@@ -1,0 +1,27 @@
+<div class="dice-tooltip">
+  {{#each parts}}
+  <section class="tooltip-part {{this.type}}">
+    <div class="dice">
+      <ol class="dice-rolls" style="display: flex; flex-direction: column; padding: 0; list-style: none; width: 100%;">
+        
+        {{!-- Block 1: Ursprungligt slag --}}
+        <div style="display: flex; flex-wrap: wrap; gap: 2px; margin: 0; padding: 0;">
+          {{#each originalRolls as |die|}}
+            <li class="roll {{die.classes}}" style="display: inline-block; text-align: center;">{{{die.result}}}</li>
+          {{/each}}
+        </div>
+
+        {{!-- Block 2: Pressat slag (visas endast om det finns pressade tärningar) --}}
+        {{#if pushedRolls.length}}
+        <div style="display: flex; flex-wrap: wrap; gap: 2px; margin-top: 6px; padding: 0;">
+          {{#each pushedRolls as |die|}}
+            <li class="roll {{die.classes}}" style="display: inline-block; text-align: center;">{{{die.result}}}</li>
+          {{/each}}
+        </div>
+        {{/if}}
+
+      </ol>
+    </div>
+  </section>
+  {{/each}}
+</div>

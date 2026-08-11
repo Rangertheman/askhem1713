@@ -1,0 +1,271 @@
+<form class="character-creation-form" style="background-color: #f9f8f6; color: #412017; height: 100%; box-sizing: border-box;">
+    <div style="padding: 10px; background-color: #f9f8f6; min-height: 100%;">
+        <!-- STEG 1: ARKETYPVAL OCH INFO -->
+        {{#if (eq currentStep 1)}}
+        <div class="archetype-selection" style="padding: 10px; margin-bottom: 20px; border: 1px solid #846758; background: rgba(0,0,0,0.01);">
+            <h3 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.3em; color: #2D1A00; margin-bottom: 8px;">Välj Arketyp</h3>
+            <select name="archetype-select" style="width: 100%; padding: 5px; margin-bottom: 10px; background: #f9f8f6; border: 1px solid #846758; color: #412017;">
+                <option value="">-- Välj en arketyp --</option>
+                {{#each archetypes}}
+                    <option value="{{this.id}}" {{#if (eq ../selectedArchetypeData.id this.id)}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+            </select>
+
+            <div class="archetype-description" style="margin-top: 10px; padding: 10px; background: #f9f8f6; border: 1px solid #c9c7b8;">
+                {{#if selectedArchetypeData}}
+                    <b class="title" style="display: block; text-align: left; font-family: Berolina, serif; font-size: 2.0em; color: #2D1A00; margin-bottom: 2px;">{{selectedArchetypeData.name}}</b>
+                    <div style="margin-top: 0px; margin-bottom: 12px;">{{{selectedArchetypeData.system.description}}}</div>
+
+                    <div style="border-top: 1px solid rgba(132,103,88,0.2); padding-top: 12px; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        {{#if selectedArchetypeData.system.socialStatus}}
+                            <div><b>Samhällsstånd:</b> {{selectedArchetypeData.system.socialStatus}}</div>
+                        {{/if}}
+                        {{#if selectedArchetypeData.system.primaryAttribute}}
+                            <div style="text-transform: capitalize;"><b>Primär egenskap:</b> 
+                                {{#if (eq selectedArchetypeData.system.primaryAttribute "strength")}}styrka{{else if (eq selectedArchetypeData.system.primaryAttribute "agility")}}smidighet{{else if (eq selectedArchetypeData.system.primaryAttribute "sharpness")}}skärpa{{else if (eq selectedArchetypeData.system.primaryAttribute "presence")}}närvaro{{else}}{{selectedArchetypeData.system.primaryAttribute}}{{/if}}
+                            </div>
+                        {{/if}}
+                        {{#if selectedArchetypeData.system.skills}}
+                            <div><b>Primära färdigheter:</b> {{selectedArchetypeData.system.skills}}</div>
+                        {{/if}}
+                        {{#if selectedArchetypeData.system.weapon}}
+                            <div><b>Vapen:</b> {{selectedArchetypeData.system.weapon}}</div>
+                        {{/if}}
+                        <div><b>Rustning:</b> {{#if selectedArchetypeData.system.armor}}{{selectedArchetypeData.system.armor}}{{else}}-{{/if}}</div>
+                        
+                        {{#if resolvedTalent}}
+                            <div style="margin-top: 4px;">
+                                <div><b>Talang:</b> {{resolvedTalent.name}}</div>
+                                {{#if resolvedTalent.description}}
+                                    <div style="margin-top: 2px; font-style: italic; font-size: 0.95em; color: #412017; opacity: 0.85;">{{{resolvedTalent.description}}}</div>
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <p>Välj en arketyp för att se beskrivning och detaljer.</p>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
+
+        <!-- STEG 2: VAL AV UTRUSTNING OCH TILLSTÅND -->
+        {{#if (eq currentStep 2)}}
+        <div class="equipment-selection" style="padding: 10px; margin-bottom: 20px; border: 1px solid #846758; background: rgba(0,0,0,0.01); display: flex; flex-direction: column; gap: 12px;">
+            <h3 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.3em; color: #2D1A00; margin-bottom: 4px;">Gör dina val</h3>
+
+            {{#if archetypeSocialStatuses}}
+            <div>
+                <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Samhällsstånd</h4>
+                {{#if (eq archetypeSocialStatuses.length 1)}}
+                    <div style="padding: 5px; font-weight: bold;">{{archetypeSocialStatuses.[0]}}</div>
+                {{else}}
+                    <select name="socialclass-select" style="width: 100%; padding: 5px; background: #f9f8f6; border: 1px solid #846758; color: #412017;">
+                        <option value="">-- Välj samhällsstånd --</option>
+                        {{#each archetypeSocialStatuses}}
+                            <option value="{{this}}" {{#if (eq ../characterData.socialClassId this)}}selected{{/if}}>{{this}}</option>
+                        {{/each}}
+                    </select>
+                {{/if}}
+            </div>
+            {{/if}}
+
+            <!-- DYNAMISK VAPEN-SEKTION -->
+            <div>
+                <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Vapen</h4>
+                {{#unless hasWeapon}}
+                    <div style="padding: 5px; font-weight: bold;">-</div>
+                {{else}}
+                    <!-- Vapen Del 1 -->
+                    <div style="margin-bottom: 8px;">
+                        {{#if (eq weaponPart1Type "select")}}
+                            <select name="weapon-select-1" style="width: 100%; padding: 5px; background: #f9f8f6; border: 1px solid #846758; color: #412017;">
+                                <option value="">-- Välj vapen --</option>
+                                {{#each weaponPart1Options}}
+                                    <option value="{{this}}" {{#if (eq ../characterData.weaponChoice this)}}selected{{/if}}>{{this}}</option>
+                                {{/each}}
+                            </select>
+                        {{else if (eq weaponPart1Type "fixed")}}
+                            <div style="padding: 5px; font-weight: bold;">{{weaponPart1Value}}</div>
+                        {{/if}}
+                    </div>
+
+                    <!-- Vapen Del 2 (om det finns "samt") -->
+                    {{#if (eq weaponPart2Type "select")}}
+                        <div style="margin-bottom: 4px;">
+                            <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Vapen 2</h4>
+                            <select name="weapon-select-2" style="width: 100%; padding: 5px; background: #f9f8f6; border: 1px solid #846758; color: #412017;">
+                                <option value="">-- Välj vapen --</option>
+                                {{#each weaponPart2Options}}
+                                    <option value="{{this}}" {{#if (eq ../characterData.weaponChoice2 this)}}selected{{/if}}>{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    {{else if (eq weaponPart2Type "fixed")}}
+                        <div style="margin-bottom: 4px;">
+                            <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Vapen 2</h4>
+                            <div style="font-weight: bold; padding: 5px;">{{weaponPart2Value}}</div>
+                        </div>
+                    {{/if}}
+                {{/unless}}
+            </div>
+
+            {{#if archetypeArmors}}
+            <div>
+                <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Rustning</h4>
+                {{#if (eq archetypeArmors.length 1)}}
+                    <div style="padding: 5px; font-weight: bold;">{{archetypeArmors.[0]}}</div>
+                {{else}}
+                    <select name="armor-select" style="width: 100%; padding: 5px; background: #f9f8f6; border: 1px solid #846758; color: #412017;">
+                        <option value="">-- Välj rustning --</option>
+                        {{#each archetypeArmors}}
+                            <option value="{{this}}" {{#if (eq ../characterData.armorChoice this)}}selected{{/if}}>{{this}}</option>
+                        {{/each}}
+                    </select>
+                {{/if}}
+            </div>
+            {{/if}}
+
+            <!-- ELÄNDE-SEKTION -->
+            <div>
+                <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Elände</h4>
+                <div style="display: flex; gap: 5px; margin-bottom: 8px;">
+                    <select name="misery-select" style="width: 100%; padding: 5px; background: #f9f8f6; border: 1px solid #846758; color: #412017;">
+                        <option value="">-- Välj elände --</option>
+                        {{#each miseries}}
+                            <option value="{{this.id}}" {{#if (eq ../selectedMiseryData.id this.id)}}selected{{/if}}>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                    <button type="button" data-action="randomize-misery" title="Slumpa elände" style="padding: 5px 10px; background: #f9f8f6; border: 1px solid #846758; color: #412017; cursor: pointer;">
+                        <i class="fa-solid fa-dice"></i>
+                    </button>
+                </div>
+
+                {{#if selectedMiseryData}}
+                <div style="padding: 8px; background: #f9f8f6; border: 1px solid #846758; font-size: 0.95em;">
+                    <div style="margin-bottom: 12px;">{{{selectedMiseryData.system.description}}}</div>
+                    {{#if selectedMiseryData.system.attribute}}
+                        <div style="margin-bottom: 12px;"><b>Egenskap:</b> 
+                            {{#if (eq selectedMiseryData.system.attribute "strength")}}Styrka{{else if (eq selectedMiseryData.system.attribute "agility")}}Smidighet{{else if (eq selectedMiseryData.system.attribute "sharpness")}}Skärpa{{else if (eq selectedMiseryData.system.attribute "presence")}}Närvaro{{else}}{{selectedMiseryData.system.attribute}}{{/if}}
+                        </div>
+                    {{/if}}
+                    {{#if selectedMiseryData.system.mitigation}}
+                        <div><b>Lindring:</b> {{selectedMiseryData.system.mitigation}}</div>
+                    {{/if}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
+
+        <!-- STEG 3: ÅLDER OCH FÖRDELNING AV EGENSKAPER OCH FÄRDIGHETER -->
+        {{#if (eq currentStep 3)}}
+        <div class="age-and-attributes-selection" style="padding: 5px; margin-bottom: 10px; border: 1px solid #846758; background: rgba(0,0,0,0.01); display: flex; flex-direction: column; gap: 6px;">
+            
+            <!-- ÅLDER (Matchad i bredd med vänsterkolumnen/Styrka-rutan via grid-struktur) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <b class="title" style="font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; min-width: 45px;">Ålder</b>
+                    <input type="number" name="age-input" value="{{characterData.age}}" style="width: 100%; padding: 4px; background: #f9f8f6; border: 1px solid #846758; color: #412017;" min="15" max="99" />
+                </div>
+                <div></div>
+            </div>
+
+            <!-- ATTRIBUT-SEKTION -->
+            <div class="flex column heavy-border" style="margin-bottom: 2px; padding: 6px; border: 1px solid #846758; background: #f9f8f6;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <b class="title" style="font-family: Berolina, serif; color: #2D1A00;">EGENSKAPER</b>
+                    <span style="font-weight: bold; color: #b52b2b;">Återstående poäng: <span id="attribute-points-left">{{attributePointsLeft}}</span></span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    <!-- STYRKA -->
+                    <div class="attribute flex row align-center" style="justify-content: space-between; padding: 4px; background: rgba(132,103,88,0.05); border: 1px solid #846758; border-radius: 3px;">
+                        <b style="font-size: 13px; color: #412017;">{{localize "ATTRIBUTE.STRENGTH"}}{{#if isStrengthPrimary}} *{{/if}}</b>
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <button type="button" class="cc-btn" data-action="decrease" data-target="system.attribute.strength.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">-</button>
+                            <span id="val-strength" style="width: 20px; text-align: center; font-weight: bold; color: #412017;">{{system.attribute.strength.value}}</span>
+                            <button type="button" class="cc-btn" data-action="increase" data-target="system.attribute.strength.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- SMIDIGHET -->
+                    <div class="attribute flex row align-center" style="justify-content: space-between; padding: 4px; background: rgba(132,103,88,0.05); border: 1px solid #846758; border-radius: 3px;">
+                        <b style="font-size: 13px; color: #412017;">{{localize "ATTRIBUTE.AGILITY"}}{{#if isAgilityPrimary}} *{{/if}}</b>
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <button type="button" class="cc-btn" data-action="decrease" data-target="system.attribute.agility.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">-</button>
+                            <span id="val-agility" style="width: 20px; text-align: center; font-weight: bold; color: #412017;">{{system.attribute.agility.value}}</span>
+                            <button type="button" class="cc-btn" data-action="increase" data-target="system.attribute.agility.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- SKÄRPA -->
+                    <div class="attribute flex row align-center" style="justify-content: space-between; padding: 4px; background: rgba(132,103,88,0.05); border: 1px solid #846758; border-radius: 3px;">
+                        <b style="font-size: 13px; color: #412017;">{{localize "ATTRIBUTE.SHARPNESS"}}{{#if isSharpnessPrimary}} *{{/if}}</b>
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <button type="button" class="cc-btn" data-action="decrease" data-target="system.attribute.sharpness.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">-</button>
+                            <span id="val-sharpness" style="width: 20px; text-align: center; font-weight: bold; color: #412017;">{{system.attribute.sharpness.value}}</span>
+                            <button type="button" class="cc-btn" data-action="increase" data-target="system.attribute.sharpness.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- NÄRVARO -->
+                    <div class="attribute flex row align-center" style="justify-content: space-between; padding: 4px; background: rgba(132,103,88,0.05); border: 1px solid #846758; border-radius: 3px;">
+                        <b style="font-size: 13px; color: #412017;">{{localize "ATTRIBUTE.PRESENCE"}}{{#if isPresencePrimary}} *{{/if}}</b>
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <button type="button" class="cc-btn" data-action="decrease" data-target="system.attribute.presence.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">-</button>
+                            <span id="val-presence" style="width: 20px; text-align: center; font-weight: bold; color: #412017;">{{system.attribute.presence.value}}</span>
+                            <button type="button" class="cc-btn" data-action="increase" data-target="system.attribute.presence.value" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FÄRDIGHETER-SEKTION -->
+            <div class="flex column heavy-border" style="padding: 6px; border: 1px solid #846758; background: #f9f8f6;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <b class="title" style="font-family: Berolina, serif; color: #2D1A00;">FÄRDIGHETER</b>
+                    <span style="font-weight: bold; color: #b52b2b;">Återstående poäng: <span id="skill-points-left">{{skillPointsLeft}}</span></span>
+                </div>
+
+                <div class="flex column" style="gap: 2px;">
+                    {{#each system.skill as |skill key|}}
+                        <div class="skill flex row align-center" style="justify-content: space-between; padding: 1.5px 4px; border-bottom: 1px solid rgba(132,103,88,0.15);">
+                            <span style="display: flex; align-items: center; gap: 4px; color: #412017;">
+                                {{localize skill.label}}{{#if skill.isPrimary}} *{{/if}}
+                            </span>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <button type="button" class="cc-skill-btn" data-action="decrease" data-key="{{key}}" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">-</button>
+                                <span id="val-skill-{{key}}" style="width: 20px; text-align: center; font-weight: bold; color: #412017;">{{skill.value}}</span>
+                                <button type="button" class="cc-skill-btn" data-action="increase" data-key="{{key}}" style="background: #f9f8f6; border: 1px solid #846758; cursor: pointer;">+</button>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <!-- NAVIGERINGSKNAPPAR -->
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            {{#if (eq currentStep 1)}}
+                <div></div>
+            {{else}}
+                <button type="button" data-action="prev-step" style="padding: 6px 15px; font-family: Berolina, serif; background: #f9f8f6; border: 1px solid #846758; color: #412017; cursor: pointer;">Tillbaka</button>
+            {{/if}}
+
+            {{#if (eq currentStep 3)}}
+                <button type="button" data-action="finish-wizard" style="padding: 6px 15px; font-family: Berolina, serif; background-color: #2D1A00; color: white; border: 1px solid #846758; cursor: pointer;">Slutför</button>
+            {{else}}
+                {{#if (eq currentStep 1)}}
+                    {{#if selectedArchetypeData}}
+                        <button type="button" data-action="next-step" style="padding: 6px 15px; font-family: Berolina, serif; background-color: #2D1A00; color: white; border: 1px solid #846758; cursor: pointer;">Nästa</button>
+                    {{/if}}
+                {{else}}
+                    <button type="button" data-action="next-step" style="padding: 6px 15px; font-family: Berolina, serif; background-color: #2D1A00; color: white; border: 1px solid #846758; cursor: pointer;">Nästa</button>
+                {{/if}}
+            {{/if}}
+        </div>
+
+    </div>
+</form>

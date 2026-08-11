@@ -1,0 +1,48 @@
+<form class="character-advancement-form">
+    <div style="padding: 10px;">
+        <h3 style="text-align: center; margin-bottom: 15px;">Erfarenhet & Förbättringar</h3>
+        
+        <!-- FÄRDIGHETER-SEKTION -->
+        <div class="flex column heavy-border" style="margin-bottom: 15px; padding: 10px;">
+            
+            <!-- Erfarenhetsrad ovanför tabellen -->
+            <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 8px; padding: 0 4px;">
+                <span style="font-weight: bold; color: #b52b2b;">Erfarenhet: <span id="advancement-exp">{{experience}}</span></span>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #846758; background: #8e8e8e;">
+                        <th style="text-align: left; padding: 4px;"><b class="title" style="font-size: 0.9em; color: white;">Färdighet</b></th>
+                        <th style="text-align: center; padding: 4px; width: 80px;"><b class="title" style="font-size: 0.9em; color: white;">Kostnad</b></th>
+                        <th style="text-align: right; padding: 4px; width: 80px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each system.skill as |skill key|}}
+                        <tr class="skill" data-key="{{key}}" style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+                            <td style="padding: 6px 4px; text-align: left; white-space: nowrap;">
+                                {{localize skill.label}} (Nivå: <span id="val-skill-{{key}}">{{skill.value}}</span>)
+                            </td>
+                            <td style="padding: 6px 4px; text-align: center; font-weight: bold;" id="cost-{{key}}"></td>
+                            <td style="padding: 6px 4px; text-align: right;">
+                                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px;">
+                                    <button type="button" class="adv-skill-btn" data-action="increase" data-key="{{key}}">+</button>
+                                    <button type="button" class="adv-skill-undo" data-key="{{key}}" title="Ångra ökning" style="display: none; cursor: pointer;">↩</button>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TALANG-SEKTION -->
+        <div class="flex column heavy-border drop-zone" style="padding: 10px; min-height: 80px; border: 2px dashed #846758;">
+            <b class="title" style="text-align: center; margin-bottom: 5px;">Dra in talanger (8 EXP)</b>
+            <div id="talent-list" style="display: flex; flex-direction: column; gap: 4px;">
+                <!-- Här hamnar talanger som dras in -->
+            </div>
+        </div>
+    </div>
+</form>

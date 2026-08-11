@@ -1,0 +1,58 @@
+<div class="flex column full">
+    <div class="flex column heavy-border wrapper" style="width: 99%;">
+        <b class="title" style="width: 85%; margin: auto;">{{localize "HEADER.TALENTS"}}</b>
+        <div class="talents flex column margin" style="flex: 1; min-height: 0;">
+            <div class="talent grid center light-border w-100" style="grid-template-columns: 50px 2fr 3.7fr 150px;">
+                <div></div>
+                <b class="name" style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">talang</b>
+                <b class="description" style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">bonustyp</b>
+                <div class="button">
+                    <a class="button item-create" title='{{localize "UI.ADD"}}' data-type="talent"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="scrollable" style="flex: 1; min-height: 0; overflow-y: auto;">
+                {{#each items as |item|}}
+                    {{#if item.isTalent}}
+                        {{#unless item.shouldHide}}
+                        <div class="talent talent-row grid align-center w-100" style="grid-template-columns: 50px 2fr 3.7fr 150px;" data-item-id="{{item._id}}">
+                            <div class="icon"><img class="icon" src="{{item.img}}" title="{{item.name}}" width="36" height="36" style="border: 1px solid white; border-radius: 3px;" onerror="this.style.display='none'"/></div>
+                            
+                            <div class="name-container" style="text-align: left;">
+                                <b class="talent-name" style="cursor: pointer;">{{#if item.displayName}}{{item.displayName}}{{else}}{{item.name}}{{/if}}</b>
+                            </div>
+                            
+                            <div class="description" style="text-align: left;">
+                                {{#if (eq item.system.bonusType "skill")}}
+                                    {{localize "BONUS_TYPE.SKILL"}}
+                                    {{#if item.system.skill}}
+                                        ({{#each item.system.skill as |sKey|}}{{#if (ne sKey "none")}}{{localize (lookup (lookup ../../actor.system.skill sKey) "label")}}{{#unless @last}}, {{/unless}}{{/if}}{{/each}})
+                                    {{/if}}
+                                {{else if (eq item.system.bonusType "damage")}}
+                                    {{localize "BONUS_TYPE.DAMAGE"}} (+{{item.system.bonus}})
+                                {{else if (eq item.system.bonusType "other")}}
+                                    Annan bonus
+                                {{else}}
+                                    {{localize "BONUS_TYPE.NONE"}}
+                                {{/if}}
+                            </div>
+                            
+                            <div class="button" style="display: flex; justify-content: flex-end; align-items: center; gap: 4px; overflow: visible; width: 150px;">
+                                <a class="item-control fav-togle" title='{{localize "UI.FAVORITE"}}'>
+                                    {{#if item.system.isFav}}
+                                        <i class="fas fa-star"></i>
+                                    {{else}}
+                                        <i class="far fa-star"></i>
+                                    {{/if}}
+                                </a>
+                                <a class="item-control to-chat" style="flex: 0 0 auto;" title='{{localize UI.CHAT}}'><i class="fas fa-comment"></i></a>
+                                <a class="item-control item-edit" style="flex: 0 0 auto;" title='{{localize  "UI.EDIT"}}'><i class="fas fa-edit"></i></a>
+                                <a class="item-control item-delete" style="flex: 0 0 auto;" title='{{localize  "UI.DELETE"}}'><i class="fas fa-trash"></i></a>
+                            </div>
+                        </div>
+                        {{/unless}}
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<form class="{{cssClass}} flexcol" autocomplete="off" style="padding: 10px;">
+  <div class="bg-offwhite flex-row flex-start">
+    <div class="dl-border w-fc h-100">
+      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
+
+    <div class="w-100 padding-sm">
+      <h1 class="center" style="margin: 0; padding: 5px;">
+        <input name="name" type="text" value="{{item.name}}" style="height: 35px; font-size: 1.2em; background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box; text-align: center;" />
+      </h1>
+
+      <div style="margin-top: 10px; width: 100%; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em; text-align: left;">läketid</b>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <input class="light" name="system.timeLimit" type="text" value="{{data.system.timeLimit}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+          <a class="roll-injury-dice" data-field="timeLimit" title="Slå läketid" style="cursor: pointer; padding: 0 5px;"><i class="fas fa-dice" style="font-size: 1.2em;"></i></a>
+        </div>
+      </div>
+
+      <div style="margin-top: 10px; width: 100%; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em; text-align: left;">effekt under läkning</b>
+        <input class="light" name="system.effect" type="text" value="{{data.system.effect}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+      </div>
+
+      <div style="margin-top: 10px; width: 100%; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em; text-align: left;">färdighet</b>
+        <select name="system.skill" multiple style="background: #f9f8f6; border: 1px solid #846758; width: 100%; height: 80px; box-sizing: border-box;">
+          {{selectOptions config.skills selected=data.system.skill localize=true}}
+        </select>
+      </div>
+
+      <div style="margin-top: 10px; width: 100%; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em; text-align: left;">dödlig</b>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <input class="light" name="system.fatal" type="text" value="{{data.system.fatal}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+          <a class="roll-injury-dice" data-field="fatal" title="Slå dödlig" style="cursor: pointer; padding: 0 5px;"><i class="fas fa-dice" style="font-size: 1.2em;"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

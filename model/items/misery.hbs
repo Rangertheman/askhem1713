@@ -1,0 +1,39 @@
+<form class="{{cssClass}} flexcol" autocomplete="off" style="padding: 10px;">
+  <div class="bg-offwhite flex-row flex-start" style="height: 100%;">
+    <!-- BILD OCH RAM -->
+    <div class="dl-border w-fc h-100">
+      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    </div>
+
+    <!-- HUVUDINNEHÅLL -->
+    <div class="w-100 padding-sm" style="display: flex; flex-direction: column; gap: 5px;">
+      <h1 class="center" style="margin: 0; padding: 5px;">
+        <input name="name" type="text" value="{{item.name}}" style="height: 35px; font-size: 1.2em; background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+      </h1>
+
+      <!-- BESKRIVNING -->
+      <div style="flex: 1 1 120px; display: flex; flex-direction: column;">
+        <b style="display: block; margin-bottom: 3px; font-family: Berolina, serif; font-size: 1.0em;">beskrivning</b>
+        <textarea name="system.description" style="flex: 1; width: 100%; resize: none; background: #f9f8f6; border: 1px solid #846758; padding: 5px; font-family: Lin, sans-serif; color: #412017; line-height: 1.2em;">{{system.description}}</textarea>
+      </div>
+
+      <!-- EGENSKAP OCH LINDRING -->
+      <div style="padding: 5px 0 0 0; border-top: 1px solid #dcdad5; display: flex; flex-direction: column; gap: 5px; flex-shrink: 0;">
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+            <b style="font-family: Berolina, serif; font-size: 1.0em;">egenskap</b>
+            <select name="system.attribute" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;">
+                <option value="strength" {{#if (eq system.attribute "strength")}}selected{{/if}}>styrka</option>
+                <option value="agility" {{#if (eq system.attribute "agility")}}selected{{/if}}>smidighet</option>
+                <option value="sharpness" {{#if (eq system.attribute "sharpness")}}selected{{/if}}>skärpa</option>
+                <option value="presence" {{#if (eq system.attribute "presence")}}selected{{/if}}>närvaro</option>
+            </select>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+            <b style="font-family: Berolina, serif; font-size: 1.0em;">{{localize "ITEM.MITIGATION"}}</b>
+            <textarea name="system.mitigation" style="width: 100%; height: 60px; resize: vertical; background: #f9f8f6; border: 1px solid #846758; font-family: Lin, sans-serif; color: #412017; padding: 5px;">{{system.mitigation}}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

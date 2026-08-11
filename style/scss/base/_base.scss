@@ -1,0 +1,117 @@
+@use "../abstracts" as *;
+
+:root {
+    @each $screen-size, $font-size in $type-scale {
+      @if $screen-size==small {
+        @each $size, $value in $font-size {
+          --fs-#{$size}: #{$value};
+        }
+      } @else if $screen-size==medium {
+      } @else {
+        @include mq(small) {
+          @each $size, $value in $font-size {
+            --fs-#{$size}: #{$value};
+          }
+        }
+      }
+    }
+  
+    @each $screen-size, $value in $breakpoints {
+      --bp-#{$screen-size}: #{$value};
+    }
+
+    scrollbar-color: $brown-300 $off-white;
+  }
+  
+.window-app .window-content{
+  color: $brown-700;
+  background-color: $off-white;
+
+}
+
+// Background colors
+
+.bg-offwhite{
+    background-color: $off-white;
+}
+
+.bg-brown-100{
+    background-color: $brown-100;
+}
+
+.bg-brown-200{
+    background-color: $brown-200;
+}
+
+
+//borders
+
+
+
+
+.title.dark{
+  
+    border: 7px solid transparent;
+    border-image: url(../asset/scooped_corners_dark.svg) stretch;
+    border-image-slice: 58 fill;
+    margin-block: 3px;
+    filter: drop-shadow(2px 2px $brown-700);
+  
+}
+
+.fancy-border{
+    border: 30px solid transparent;
+    border-image: url(../asset/bq_border.png) 35 stretch;
+    
+}
+
+//TODO the margin and padding should be removed but legacy css is using it for now
+.heavy-border{
+    border: 2px solid $brown-300;
+   
+}
+
+
+
+.dl-border{
+  border: 10px solid transparent;
+	border-image: url(../asset/ft_border.png) 15 stretch;
+}
+
+.border-none{
+  border: none;
+}
+
+.br-5{
+  border-radius: 5px;
+}
+
+.vaesen .title{
+	border: 7px solid transparent;
+	padding: 0px;
+	border-image: url(../asset/scooped_corners_dark.svg) stretch;
+	border-image-slice: 58 fill;
+	background-color: transparent;
+	margin: 3px;
+  filter: drop-shadow(2px 2px $brown-700);
+}
+
+input.light{
+  border: 7px solid transparent;
+  border-image: url(../asset/scooped_corners.svg) stretch;
+  border-image-slice: 58 fill;
+  margin-block: 3px;
+  filter: drop-shadow(2px 2px $brown-700);
+}
+
+input.dark{
+  border: 7px solid transparent;
+  border-image: url(../asset/scooped_corners_dark.svg) stretch;
+  border-image-slice: 58 fill;
+  margin-block: 3px;
+  filter: drop-shadow(2px 2px $brown-700);
+}
+
+.icon{
+  border: none;
+}

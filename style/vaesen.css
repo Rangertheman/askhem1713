@@ -1,0 +1,43 @@
+.vaesen .monster {
+    height: 100%;
+    width: 100%;
+}
+
+.vaesen .monster .right{
+    flex-basis: 35%;
+    width: 35%;
+    
+
+}
+
+.vaesen .monster .left{
+    flex-basis: 80%;
+    
+
+}
+
+.vaesen .monster .header .profile-img {
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vaesen .monster .header .name {
+    width: 100%;
+}
+
+.vaesen .monster .header .initial {
+    flex-basis: 50%;
+}
+
+.vaesen .monster .header .initial input {
+    text-align: center;
+}
+
+.vaesen .monster .header .subsequent {
+    flex-basis: 50%
+}
+
+.vaesen .monster .header .subsequent input {
+    text-align: center;
+}

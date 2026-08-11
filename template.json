@@ -1,0 +1,106 @@
+{
+  "Actor": {
+    "types": ["player", "npc", "vaesen"],
+    "templates": {
+      "attributes": {
+        "attribute": {
+          "strength": { "label": "ATTRIBUTE.STRENGTH", "value": 0 },
+          "agility": { "label": "ATTRIBUTE.AGILITY", "value": 0 },
+          "sharpness": { "label": "ATTRIBUTE.SHARPNESS", "value": 0 },
+          "presence": { "label": "ATTRIBUTE.PRESENCE", "value": 0 }
+        }
+      },
+      "skills": {
+        "skill": {
+          "craft": { "label": "SKILL.CRAFT", "value": 0, "attribute": "strength" },
+          "force": { "label": "SKILL.FORCE", "value": 0, "attribute": "strength" },
+          "closeCombat": { "label": "SKILL.CLOSE_COMBAT", "value": 0, "attribute": "strength" },
+          "agility": { "label": "SKILL.AGILITY", "value": 0, "attribute": "agility" },
+          "rangedCombat": { "label": "SKILL.RANGED_COMBAT", "value": 0, "attribute": "agility" },
+          "stealth": { "label": "SKILL.STEALTH", "value": 0, "attribute": "agility" },
+          "medicine": { "label": "SKILL.MEDICINE", "value": 0, "attribute": "sharpness" },
+          "learning": { "label": "SKILL.LEARNING", "value": 0, "attribute": "sharpness" },
+          "religion": { "label": "SKILL.RELIGION", "value": 0, "attribute": "sharpness" },
+          "observation": { "label": "SKILL.OBSERVATION", "value": 0, "attribute": "presence" },
+          "manipulation": { "label": "SKILL.MANIPULATION", "value": 0, "attribute": "presence" },
+          "insight": { "label": "SKILL.DISCOVERY", "value": 0, "attribute": "presence" }
+        }
+      },
+      "conditions": {
+        "condition": {
+          "physical": {
+            "isBroken": false,
+            "states": {
+              "exhausted": { "label": "CONDITION.EXHAUSTED", "isChecked": false },
+              "battered": { "label": "CONDITION.BATTERED", "isChecked": false },
+              "wounded": { "label": "CONDITION.WOUNDED", "isChecked": false }
+            }
+          },
+          "mental": {
+            "isBroken": false,
+            "states": {
+              "angry": { "label": "CONDITION.ANGRY", "isChecked": false },
+              "frightened": { "label": "CONDITION.FRIGHTENED", "isChecked": false },
+              "hopeless": { "label": "CONDITION.HOPELESS", "isChecked": false }
+            }
+          }
+        }
+      }
+    },
+    "player": {
+      "templates": ["attributes", "skills", "conditions"],
+        "bio": { 
+        "age": "", 
+        "archetype": "", 
+        "social_status": "", 
+        "description": "", 
+        "motivation": "", 
+        "trauma": "", 
+        "darkSecret": "" 
+      },
+      "advantage": "",
+      "memento": "",
+      "experience": 0,
+      "resources": 0,
+      "capital": 0,
+      "note": "",
+      "changelog": [],
+      "starting": false
+    },
+    "npc": {
+      "templates": ["attributes", "skills"],
+      "condition": {
+        "physical": { "value": 0, "max": 0 },
+        "mental": { "value": 0, "max": 0 }
+      },
+      "information": "",
+      "note": ""
+    },
+   "vaesen": {
+      "templates": ["attributes", "skills"],
+      "fear": { "initial": 0, "subsequent": 0 },
+      "ritual": { "known": "", "secret": "" },
+      "note": ""
+    }
+  },
+  "Item": {
+    "types": [ "criticalInjury", "weapon", "armor", "talent", "gear", "magic", "misery", "archetype", "skill" ],
+    "templates": { "itemFav": { "isFav": false } },
+    "criticalInjury": { "type": "", "fatal": "", "timeLimit": "", "effect": "", "permanent": "No", "skill": "", "bonus": 0, "healed": "No" },
+    "weapon": { "templates": ["itemFav"], "damage": 0, "range": "", "bonus": 0, "availability": 0, "skill": "", "starting": false },
+    "armor": { "templates": ["itemFav"], "protection": 0, "agility": 0, "availability": 0 },
+   "talent": { "templates": ["itemFav"], "description": "", "bonusType": "none", "skill": ["none"], "bonus": 0 },
+    "gear": { "templates": ["itemFav"], "bonus": 0, "availability": 0, "effect": "", "description": "", "risk": "", "quantity": "", "skill": ["none"], "starting": false },
+    "magic": { "description": "", "category": "" },
+    "misery": { "attribute": "", "symptom": 0, "description": "", "mitigation": "" },
+      "archetype": {
+      "description": "",
+      "socialStatus": "",
+      "primaryAttribute": "",
+      "skills": [],
+      "weapon": "",
+      "armor": "",
+      "talent": { "id": "", "name": "" }
+    }
+  }
+}

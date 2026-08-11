@@ -1,0 +1,38 @@
+<div class="flex column full">
+    <div class="flex column heavy-border wrapper" style="width: 99%;">
+        <b class="title" style="width: 85%; margin: auto;">{{localize "HEADER.GEAR"}}</b>
+        <div class="gears flex column margin grow">
+            <div class="gear grid center light-border w-100" style="grid-template-columns: 50px 1.4fr 1fr 0.6fr 0.8fr 0.8fr 130px;">
+                <div></div>
+                <b style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">utrustning</b>
+                <b style="text-align: center; font-family: Berolina, serif; font-size: 1.4em;">bonus</b>
+                <b style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">färdighet</b>
+                <div></div>
+                <div></div>
+                <a class="button item-create" title='{{localize "UI.ADD"}}' data-type="gear" data-starting=""><i class="fas fa-plus"></i></a>
+            </div>
+            <div class="scrollable">
+                {{#each items as |item|}}
+                    {{#if (and item.isGear (not item.system.starting))}}
+                        <div class="gear gear-row grid align-center w-100" style="grid-template-columns: 50px 1.4fr 1fr 0.6fr 0.8fr 0.8fr 130px;" data-item-id="{{item._id}}">
+                            <div class="icon"><img class="icon" src="{{item.img}}" title="{{item.name}}" width="36" height="36" style="border: 1px solid white; border-radius: 3px;" onerror="this.style.display='none'"/></div>
+                            <div class="name" style="text-align: left; cursor: pointer;"><b class="talent-name">{{item.name}}</b></div>
+                            <div class="bonus" style="text-align: center;">{{item.system.bonus}}</div>
+                            <div class="skill" style="text-align: left;">{{localize (lookup (lookup ../actor.system.skill item.system.skill) "label")}}</div>
+                            <div></div>
+                            <div></div>
+                            <div class="button" style="display: flex; justify-content: flex-end; align-items: center; gap: 4px; overflow: visible; width: 130px;">
+                                <a class="item-control fav-togle" style="flex: 0 0 auto;" title='{{localize "UI.FAVORITE"}}'>
+                                    {{#if item.system.isFav}}<i class="fas fa-star"></i>{{else}}<i class="far fa-star"></i>{{/if}}
+                                </a>
+                                <a class="item-control to-chat" style="flex: 0 0 auto;" title='{{localize UI.CHAT}}'><i class="fas fa-comment"></i></a>
+                                <a class="item-control item-edit" style="flex: 0 0 auto;" title='{{localize "UI.EDIT"}}'><i class="fas fa-edit"></i></a>
+                                <a class="item-control item-delete" style="flex: 0 0 auto;" title='{{localize "UI.DELETE"}}'><i class="fas fa-trash"></i></a>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

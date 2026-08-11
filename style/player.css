@@ -1,0 +1,134 @@
+.vaesen .player {
+    /* height: 100%; */
+    width: 100%;
+}
+
+.vaesen .player .header .img-frame{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 175px;
+	height: 175px;
+	
+}
+
+.vaesen .player .header .profile-frame{
+	position: absolute;
+	z-index: 1;
+	border: none;
+}
+.vaesen .player .header .profile-img{
+	position: absolute;
+	border: 1px transparent;
+	margin-top: 5px;
+	border-radius: 50%;
+	z-index: 2;
+	padding: 15px;
+	
+}
+
+
+
+.vaesen .player .header .name {
+    flex-basis: 50%;
+}
+
+.vaesen .player .header .age {
+    flex-basis: 25%;
+}
+
+.vaesen .player .header .age input {
+    text-align: center;
+}
+
+.vaesen .player .header .archetype {
+    flex-basis: 50%;
+}
+
+.vaesen .player .header .resources {
+    flex-basis: 25%;
+}
+
+.vaesen .player .header .resources b:hover {
+    text-shadow: 0 0 10px darkolivegreen;
+	cursor: pointer;
+}
+
+.vaesen .player .header .resources input {
+    text-align: center;
+}
+
+.vaesen .player .header .capital {
+    flex-basis: 25%;
+}
+
+.vaesen .player .header .capital input {
+    text-align: center;
+}
+
+.vaesen .player .header .experience {
+    flex-basis: 25%;
+}
+
+.vaesen .player .header .experience input {
+    text-align: center;
+}
+
+.vaesen .player .conditions b.condition,
+.vaesen .player .conditions div.condition {
+    flex-basis: 100%;
+    border: 1px solid #826657;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 2px;
+    background-color: #d6c9c2;
+}
+
+/****** Favorite Items ******/
+.vaesen .favorite.armor{
+	background: none;
+	margin: 0px;
+	padding: 0px;
+	justify-content: space-between;
+	margin-top: 2px;
+}
+.vaesen .favorite.weapon{
+	background: none;
+	margin: 0px;
+	padding: 0px;
+	justify-content: space-between;
+	margin-top: 2px;
+}
+.vaesen .player .favorites .scrollable {
+	height: fit-content;
+}
+
+.vaesen .player .favorite.armor img.icon {
+    border: 0;
+	width: 25px;
+	height: 25px;
+}
+
+.vaesen .player .favorite.weapon img.icon {
+    border: 0;
+	width: 25px;
+	height: 25px;
+}
+
+.vaesen .player .favorite.talent img.icon {
+    border: 0;
+	width: 25px;
+	height: 25px;
+}
+
+.vaesen .player .askhem-hover-container {
+    position: relative;
+}
+
+.vaesen .player .askhem-hover-container .askhem-hover-box {
+    display: none;
+}
+
+.vaesen .player .askhem-hover-container:hover .askhem-hover-box {
+    display: block;
+}

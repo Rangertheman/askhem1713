@@ -1,0 +1,26 @@
+<form class="{{cssClass}} flexcol" autocomplete="off" style="padding: 10px;">
+  <div class="bg-offwhite flex-row flex-start">
+    <div class="dl-border w-fc h-100">
+      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
+
+    <div class="w-100 padding-sm">
+      <h1 class="center" style="margin: 0; padding: 5px;">
+        <input name="name" type="text" value="{{item.name}}" style="height: 35px; font-size: 1.2em; background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box; text-align: center;" />
+      </h1>
+
+      <div class="flex row" style="margin-top: 10px; gap: 10px; align-items: flex-end;">
+        <div class="flex-col" style="flex: 2;">
+          <b style="font-family: Berolina, serif; font-size: 1.0em; text-align: left;">färdighet</b>
+          <select name="system.skill" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; height: 25px; box-sizing: border-box;">
+            {{selectOptions config.skills selected=data.system.skill localize=true}}
+          </select>
+        </div>
+        <div class="flex-col" style="flex: 1;">
+          <b style="font-family: Berolina, serif; font-size: 1.0em; text-align: left;">värde</b>
+          <input class="light" name="system.value" type="number" value="{{data.system.value}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; height: 25px; box-sizing: border-box;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

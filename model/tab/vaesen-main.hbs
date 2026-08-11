@@ -1,0 +1,47 @@
+<div class="flex row full">
+    <div class="flex column left-block" style="width: 100%;">
+        <div class="flex column heavy-border wrapper" style="width: 99%; margin-bottom: 10px;">
+            <b class="title" style="width: 85%; margin: auto;">FÄRDIGHETER</b>
+            <div class="skills flex column margin" style="flex: 1; min-height: 0;">
+                <div class="skill grid center light-border w-100" style="grid-template-columns: 50px 1fr 1fr 1fr 1fr 0.6fr 130px;">
+                    <div></div>
+                    <b class="name" style="text-align: left; font-family: Berolina, serif; font-size: 1.4em; padding-left: 5px;">färdighet</b>
+                    <b class="value" style="text-align: center; font-family: Berolina, serif; font-size: 1.4em;">värde</b>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div class="button" style="text-align: right;">
+                        <a class="button item-create" title='{{localize "UI.ADD"}}' data-type="skill"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="scrollable" style="flex: 1; min-height: 0; overflow-y: auto;">
+                    {{#each items as |item|}}
+                        {{#if (eq item.type "skill")}}
+                            <div class="skill skill-row grid align-center w-100" style="grid-template-columns: 50px 1fr 1fr 1fr 1fr 0.6fr 130px;" data-item-id="{{item._id}}">
+                                <div class="icon"><img class="icon" src="{{item.img}}" title="{{item.name}}" width="36" height="36" style="border: 1px solid white; border-radius: 3px;" onerror="this.style.display='none'"/></div>
+                                
+                                <div class="name skill-roll" style="text-align: left; cursor: pointer; padding-left: 5px;">
+                                    <b class="talent-name" style="font-family: Lin, sans-serif; font-size: 1.1em; color: #412017;">{{item.name}}</b>
+                                </div>
+                                
+                                <div class="value" style="text-align: center; font-family: Lin, sans-serif; font-size: 1.1em; font-weight: bold; color: #412017;">
+                                    {{item.system.value}}
+                                </div>
+                                
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                
+                                <div class="button" style="display: flex; justify-content: flex-end; align-items: center; gap: 4px; overflow: visible; width: 130px;">
+                                    <a class="item-control to-chat" style="flex: 0 0 auto;" title='{{localize UI.CHAT}}'><i class="fas fa-comment"></i></a>
+                                    <a class="item-control item-edit" style="flex: 0 0 auto;" title='{{localize "UI.EDIT"}}'><i class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" style="flex: 0 0 auto;" title='{{localize "UI.DELETE"}}'><i class="fas fa-trash"></i></a>
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

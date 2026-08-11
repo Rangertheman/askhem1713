@@ -1,0 +1,45 @@
+.vaesen .npc {
+    height: 100%;
+    width: 100%;
+}
+
+.vaesen .npc .right{
+    max-width: 315px;
+}
+
+.vaesen .npc .armors .heading,
+.vaesen .npc .weapons .heading,
+.vaesen .npc .gears .heading,
+.vaesen .npc .magics .heading{
+    font-size: .8em;
+    justify-content: space-between;
+}
+
+.vaesen .npc .left{
+    width: 100%;
+}
+.vaesen .npc .header .profile-img {
+    border: none;
+    border-radius: 10px;
+    align-self: center;
+}
+
+.vaesen .npc .header .name {
+    margin-bottom: 5px;
+}
+
+.vaesen .npc .header .physical {
+    margin-bottom: 5px;
+}
+
+.vaesen .npc .header .physical input {
+    flex-basis: 25%;
+}
+
+.vaesen .npc .header .mental {
+    margin-bottom: 5px;
+}
+
+.vaesen .npc .header .mental input {
+    flex-basis: 25%;
+}

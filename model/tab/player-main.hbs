@@ -1,0 +1,118 @@
+<div class="flex row full drop-zone">
+    
+    <!-- VÄNSTER BLOCK: ATTRIBUT, FÄRDIGHETER & ELÄNDE -->
+    <div class="flex column left-block">
+        <div class="flex column heavy-border" style="width: 98%;">
+            <b class="title">{{localize "HEADER.ATTRIBUTES"}} & {{localize "HEADER.SKILLS"}}</b>
+            
+            <!-- RAD 1: STYRKA & SMIDIGHET -->
+            <div class="flex row wrap">
+                <!-- STYRKA -->
+                <div class="skills physique flex column" data-key="strength">
+                    <div class="attribute flex row align-center" data-key="strength">
+                        <b class="header">{{localize "ATTRIBUTE.STRENGTH"}}{{#if system.attribute.strength.isPrimary}} *{{/if}}</b>
+                        <input name="system.attribute.strength.value" type="text" value="{{system.attribute.strength.value}}" data-dtype="Number"/>
+                    </div>
+                    <div class="skill-group">
+                        {{#each system.skill as |skill key|}}
+                            {{#if skill.hasStrength}}
+                                <div class="skill flex row align-center" data-key="{{key}}">
+                                    <b>{{localize skill.label}}{{#if skill.isPrimary}} *{{/if}}</b>
+                                    <input name="system.skill.{{key}}.value" type="text" value="{{skill.value}}" data-dtype="Number"/>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+
+                <!-- SMIDIGHET -->
+                <div class="skills logic flex column" data-key="agility">
+                    <div class="attribute flex row align-center" data-key="agility">
+                        <b class="header">{{localize "ATTRIBUTE.AGILITY"}}{{#if system.attribute.agility.isPrimary}} *{{/if}}</b>
+                        <input name="system.attribute.agility.value" type="text" value="{{system.attribute.agility.value}}" data-dtype="Number"/>
+                    </div>
+                    <div class="skill-group">
+                        {{#each system.skill as |skill key|}}
+                            {{#if skill.hasAgility}}
+                                <div class="skill flex row align-center" data-key="{{key}}">
+                                    <b>{{localize skill.label}}{{#if skill.isPrimary}} *{{/if}}</b>
+                                    <input name="system.skill.{{key}}.value" type="text" value="{{skill.value}}" data-dtype="Number"/>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAD 2: SKÄRPA & NÄRVARO -->
+            <div class="flex row wrap">
+                <!-- SKÄRPA -->
+                <div class="skills precision flex column" data-key="sharpness">
+                    <div class="attribute flex row align-center" data-key="sharpness">
+                        <b class="header">{{localize "ATTRIBUTE.SHARPNESS"}}{{#if system.attribute.sharpness.isPrimary}} *{{/if}}</b>
+                        <input name="system.attribute.sharpness.value" type="text" value="{{system.attribute.sharpness.value}}" data-dtype="Number"/>
+                    </div>
+                    <div class="skill-group">
+                        {{#each system.skill as |skill key|}}
+                            {{#if skill.hasSharpness}}
+                                <div class="skill flex row align-center" data-key="{{key}}">
+                                    <b>{{localize skill.label}}{{#if skill.isPrimary}} *{{/if}}</b>
+                                    <input name="system.skill.{{key}}.value" type="text" value="{{skill.value}}" data-dtype="Number"/>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+
+                <!-- NÄRVARO -->
+                <div class="skills empathy flex column" data-key="presence">
+                    <div class="attribute flex row align-center" data-key="presence">
+                        <b class="header">{{localize "ATTRIBUTE.PRESENCE"}}{{#if system.attribute.presence.isPrimary}} *{{/if}}</b>
+                        <input name="system.attribute.presence.value" type="text" value="{{system.attribute.presence.value}}" data-dtype="Number"/>
+                    </div>
+                    <div class="skill-group">
+                        {{#each system.skill as |skill key|}}
+                            {{#if skill.hasPresence}}
+                                <div class="skill flex row align-center" data-key="{{key}}">
+                                    <b>{{localize skill.label}}{{#if skill.isPrimary}} *{{/if}}</b>
+                                    <input name="system.skill.{{key}}.value" type="text" value="{{skill.value}}" data-dtype="Number"/>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ELÄNDE -->
+        <div class="flex column heavy-border" style="width: 98%;">
+            <b class="title">ELÄNDE</b>
+            <div style="text-align: center; margin: 5px;">
+                <button type="button" class="roll-symptom" {{#unless (gt miseryCount 0)}}disabled{{/unless}}>Slå för symptom</button>
+            </div>
+            <div class="flex column margin">
+                {{#each miseryItems as |item|}}
+                    <div class="askhem-hover-container" style="margin-bottom: 5px;">
+                        <div class="flex row" style="justify-content: space-between; align-items: center; font-size: 1.1em; cursor: help;">
+                            <span style="display: flex; align-items: center; gap: 5px;">
+                                <img src="{{item.img}}" style="width: 20px; height: 20px; border: none; object-fit: cover; border-radius: 3px;" />
+                                {{item.name}} ({{item.localizedAttribute}}){{#if item.system.symptomName}}: {{item.system.symptomName}}{{/if}}
+                            </span>
+                        </div>
+                        <div class="askhem-hover-box" style="position: absolute; left: 0; bottom: 100%; z-index: 50; background: #f3efe6; border: 1px solid #846758; padding: 8px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-size: 1.2em; color: #412017; width: 280px; pointer-events: none;">
+                            <b>Lindring:</b> {{item.system.mitigation}}
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="flex row" style="justify-content: center; margin-bottom: 5px; font-style: italic; color: #888;">
+                        Inga eländen registrerade
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="flex column heavy-border right-block">
+        {{> systems/askhem1713/model/tab/player-favorites.hbs}}
+    </div>
+</div>

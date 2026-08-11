@@ -1,0 +1,51 @@
+<form class="{{cssClass}} flexcol" autocomplete="off" style="padding: 10px;">
+  <div class="bg-offwhite flex-row flex-start">
+    <div class="dl-border w-fc h-100">
+      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    </div>
+    <div class="w-100 padding-sm">
+      <h1 class="center" style="margin: 0; padding: 5px;">
+        <input name="name" type="text" value="{{item.name}}" style="height: 35px; font-size: 1.2em; background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+      </h1>
+      
+      <div class="grid grid-2col gap-sm">
+        <div>
+          <b style="font-family: Berolina, serif; font-size: 1.0em;">samhällsstånd:</b>
+          <input name="system.socialStatus" type="text" value="{{system.socialStatus}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+        </div>
+        <div>
+          <b style="font-family: Berolina, serif; font-size: 1.0em;">primär egenskap:</b>
+          <select name="system.primaryAttribute" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;">
+            <option value="">Välj...</option>
+            <option value="strength" {{#if (eq system.primaryAttribute "strength")}}selected{{/if}}>styrka</option>
+            <option value="agility" {{#if (eq system.primaryAttribute "agility")}}selected{{/if}}>smidighet</option>
+            <option value="sharpness" {{#if (eq system.primaryAttribute "sharpness")}}selected{{/if}}>skärpa</option>
+            <option value="presence" {{#if (eq system.primaryAttribute "presence")}}selected{{/if}}>närvaro</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top: 10px;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em;">primära färdigheter:</b>
+        <input name="system.skills" type="text" value="{{system.skills}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" placeholder="skriv in färdigheter separerade med komma..." />
+      </div>
+
+      <div style="margin-top: 10px; width: 100%; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em;">beskrivning:</b>
+        <div style="background: #f9f8f6; border: 1px solid #846758; padding: 5px; box-sizing: border-box;">
+           {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+
+      <div class="grid grid-2col gap-sm" style="margin-top: 10px;">
+        <div><b style="font-family: Berolina, serif; font-size: 1.0em;">vapen:</b><input name="system.weapon" type="text" value="{{system.weapon}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" /></div>
+        <div><b style="font-family: Berolina, serif; font-size: 1.0em;">rustning:</b><input name="system.armor" type="text" value="{{system.armor}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" /></div>
+      </div>
+      
+      <div class="talent-drop-zone" style="margin-top: 10px; border: 1px dashed #846758; padding: 5px; background: #f9f8f6; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em;">talang:</b>
+        <div class="talent-placeholder">{{#if system.talent.name}}{{system.talent.name}}{{else}}dra och släpp talang hit...{{/if}}</div>
+      </div>
+    </div>
+  </div>
+</form>

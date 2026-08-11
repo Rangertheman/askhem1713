@@ -1,0 +1,59 @@
+<form class="{{cssClass}} flexcol" autocomplete="off" style="padding: 10px;">
+  <div class="bg-offwhite flex-row flex-start">
+    <div class="dl-border w-fc h-100">
+      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
+
+    <div class="w-100 padding-sm">
+      <h1 class="center" style="margin: 0; padding: 5px;">
+        <input name="name" type="text" value="{{item.name}}" style="height: 35px; font-size: 1.2em; background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+      </h1>
+
+      <div class="grid grid-2col gap-sm" style="margin-top: 10px;">
+        <div>
+          <b style="font-family: Berolina, serif; font-size: 1.0em;">bonustyp</b>
+          <select name="system.bonusType" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;">
+            <option value="none" {{#if (eq data.system.bonusType "none")}}selected{{/if}}>{{localize "BONUS_TYPE.NONE"}}</option>
+            <option value="other" {{#if (eq data.system.bonusType "other")}}selected{{/if}}>Annan bonus</option>
+            <option value="skill" {{#if (eq data.system.bonusType "skill")}}selected{{/if}}>{{localize "BONUS_TYPE.SKILL"}}</option>
+            <option value="damage" {{#if (eq data.system.bonusType "damage")}}selected{{/if}}>{{localize "BONUS_TYPE.DAMAGE"}}</option>
+          </select>
+        </div>
+
+        {{#unless (or (eq data.system.bonusType "none") (eq data.system.bonusType "other"))}}
+        <div>
+          <b style="font-family: Berolina, serif; font-size: 1.0em;">
+            {{#if (eq data.system.bonusType "damage")}}
+              {{localize "TALENT.DAMAGE_BONUS"}}
+            {{else}}
+              {{localize "TALENT.DICE_BONUS"}}
+            {{/if}}
+          </b>
+          <input class="light" name="system.bonus" type="text" value="{{data.system.bonus}}" style="background: #f9f8f6; border: 1px solid #846758; width: 100%; box-sizing: border-box;" />
+        </div>
+        {{/unless}}
+      </div>
+
+      {{#if (or (eq data.system.bonusType "skill") (eq data.system.bonusType "damage"))}}
+      <div style="margin-top: 10px;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em;">färdighet</b>
+        <select name="system.skill" {{#unless (eq data.system.bonusType "damage")}}multiple{{/unless}} style="background: #f9f8f6; border: 1px solid #846758; width: 100%; {{#if (eq data.system.bonusType 'damage')}}height: 25px;{{else}}height: 80px;{{/if}} box-sizing: border-box;">
+          {{#if (eq data.system.bonusType "damage")}}
+            <option value="closeCombat" {{#if (eq data.system.skill "closeCombat")}}selected{{/if}}>{{localize "SKILL.CLOSE_COMBAT"}}</option>
+            <option value="rangedCombat" {{#if (eq data.system.skill "rangedCombat")}}selected{{/if}}>{{localize "SKILL.RANGED_COMBAT"}}</option>
+          {{else}}
+            {{selectOptions config.skills selected=data.system.skill localize=true}}
+          {{/if}}
+        </select>
+      </div>
+      {{/if}}
+
+      <div style="margin-top: 10px; width: 100%; box-sizing: border-box;">
+        <b style="font-family: Berolina, serif; font-size: 1.0em;">beskrivning</b>
+        <div style="background: #f9f8f6; border: 1px solid #846758; padding: 5px; box-sizing: border-box;">
+          {{editor data.system.description target="system.description" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

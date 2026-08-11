@@ -1,0 +1,101 @@
+<form class="{{cssClass}} vaesen" autocomplete="off">
+    <div class="player flex column">
+        
+        <!-- HEADER-CONTENT: BIO (VÄNSTER), PORTÄTT + LOGGA (MITTEN), BESKRIVNING (HÖGER) -->
+        <div class="header flex column align-center" style="margin-top: 10px; margin-bottom: 10px; padding: 0 10px;">
+            <div class="header-content" style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 15px; width: 100%;">
+                
+                <!-- VÄNSTERKOLUMN: BIO & MIASMA -->
+                <div class="bio-container" style="display: flex; flex-direction: column; flex: 1.2; gap: 10px;">
+                    <div class="name">
+                        <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">namn:</b>
+                        <input name="name" type="text" value="{{actor.name}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                    </div>
+                    <div class="archetype">
+                        <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">arketyp:</b>
+                        <input name="system.bio.archetype" type="text" value="{{system.bio.archetype}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                    </div>
+                    <div class="social_status">
+                        <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">samhällsstånd:</b>
+                        <input name="system.bio.social_status" type="text" value="{{system.bio.social_status}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                    </div>
+                    
+                    <!-- Ålder, Erfarenhet & Miasma på en rad -->
+                    <div class="row-fields" style="display: flex; gap: 10px;">
+                        <div class="age" style="flex: 1;">
+                            <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">ålder:</b>
+                            <input name="system.bio.age" type="text" value="{{system.bio.age}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                        </div>
+                        <div class="experience" style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                <b style="font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">erfarenhet:</b>
+                                <a class="open-advancement" title="Förbättra karaktär" style="cursor: pointer; margin-right: 2px;"><i class="fas fa-arrow-circle-up"></i></a>
+                            </div>
+                            <input name="system.experience" type="number" value="{{system.experience}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                        </div>
+                        <div class="miasma" style="flex: 1;">
+                            <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">miasma:</b>
+                            <input name="system.miasma" type="number" value="{{system.miasma}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MITTKOLUMN: LOGGA OCH PORTÄTT (ELLIPTISK) -->
+                <div class="middle-column-container" style="display: flex; flex-direction: column; align-items: center; flex: 0.8; gap: 15px;">
+                    <div class="logo-container" style="width: 100%; display: flex; justify-content: center;">
+                        <img src="systems/askhem1713/asset/askhem_black_logo.png" style="max-width: 130px; display: block; border: none;">
+                    </div>
+                    <div class="portrait-container">
+                        <div class="img-frame" style="width: 150px; height: 195px; border-radius: 50% / 60%; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="border-radius: 50% / 60%; width: 100%; height: 100%; object-fit: cover;" />
+                            <img class="profile-frame" src="systems/askhem1713/asset/token_border.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50% / 60%; pointer-events: none;" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HÖGERKOLUMN: BESKRIVNING -->
+                <div class="description-container" style="display: flex; flex-direction: column; flex: 1.2;">
+                    <div class="description">
+                        <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">beskrivning:</b>
+                        <textarea name="system.bio.description" style="height: 250px; width: 100%; resize: none; background: #f9f8f6; border: 1px solid #846758; padding: 10px; text-align: left; font-family: Lin, sans-serif; font-size: 1.2em; color: #412017; line-height: 1.5em;">{{system.bio.description}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABS & BODY -->
+        <div class="sheet-tabs tabs flex row" data-group="primary">
+            <b class="item" data-tab="main">{{localize "TAB.MAIN"}}</b>
+            <b class="item" data-tab="combat">{{localize "TAB.COMBAT"}}</b>
+            <b class="item" data-tab="talent">{{localize "TAB.TALENT"}}</b>
+            <b class="item" data-tab="gear">{{localize "TAB.GEAR"}}</b>
+            {{#if system.hasSotmagi}}
+            <b class="item" data-tab="magic">SOTMAGI</b>
+            {{/if}}
+            <b class="item" data-tab="note">{{localize "TAB.NOTE"}}</b>
+        </div>
+
+        <div class="sheet-body flex row">
+            <div class="tab" data-group="primary" data-tab="main">
+                {{> systems/askhem1713/model/tab/player-main.hbs}}
+            </div>
+            <div class="tab" data-group="primary" data-tab="combat">
+                {{> systems/askhem1713/model/tab/player-combat.hbs}}
+            </div>
+            <div class="tab" data-group="primary" data-tab="talent">
+                {{> systems/askhem1713/model/tab/player-talent.hbs}}
+            </div>
+            <div class="tab" data-group="primary" data-tab="gear">
+                {{> systems/askhem1713/model/tab/player-gear.hbs}}
+            </div>
+            {{#if system.hasSotmagi}}
+            <div class="tab" data-group="primary" data-tab="magic">
+                {{> systems/askhem1713/model/tab/player-magic.hbs}}
+            </div>
+            {{/if}}
+            <div class="tab note" data-group="primary" data-tab="note">
+                {{> systems/askhem1713/model/tab/player-note.hbs}}
+            </div>
+        </div>
+    </div>
+</form>

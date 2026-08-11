@@ -1,0 +1,88 @@
+<div class="flex column favorites">
+    <b class="title" style="width: 98%;"> {{localize "HEADER.FAVORITES"}}</b>
+    <div class="scrollable">
+        
+        <!-- 1. Talanger -->
+        <div class="talent grid center light-border w-100" style="grid-template-columns: 50px 1fr 50px;">
+            <div></div>
+            <b class="name" style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">talang</b>
+            <div></div>
+        </div>
+        <div class="scrollable">
+            {{#each items as |item|}}
+            {{#if item.isTalent}}
+            {{#if item.system.isFav}}
+            <div class="favorite item talent talent-row grid align-center w-100" style="grid-template-columns: 50px 1fr 50px;" data-item-id="{{item._id}}">
+                <div class="icon" style="width: 50px; display: flex; align-items: center; justify-content: flex-start;"><img class="icon" src="{{item.img}}" title="{{item.name}}" width="36" height="36" style="border: 1px solid white; border-radius: 3px;" onerror="this.style.display='none'"/></div>
+                <div class="name" style="text-align: left; cursor: pointer;"><b class="talent-name">{{item.name}}</b></div>
+                <div class="button" style="display: flex; justify-content: flex-end; align-items: center;">
+                    <a class="item-control fav-togle" style="flex: 0 0 auto;" title='{{localize "UI.FAVORITE"}}'>
+                        {{#if item.system.isFav}}<i class="fas fa-star"></i>{{else}}<i class="far fa-star"></i>{{/if}}
+                    </a>
+                </div>
+            </div>
+            {{/if}}
+            {{/if}}
+            {{/each}}
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #846758; margin: 10px 0; opacity: 0.5;">
+
+        <!-- 2. Vapen -->
+        <div class="weapon grid center light-border w-100" style="grid-template-columns: 50px 2fr 1fr 1fr 50px;">
+            <div></div>
+            <b style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">vapen</b>
+            <b style="text-align: center; font-family: Berolina, serif; font-size: 1.4em;">bonus</b>
+            <b style="text-align: center; font-family: Berolina, serif; font-size: 1.4em;">skada</b>
+            <div></div>
+        </div>
+        <div class="scrollable">
+            {{#each items as |item|}}
+            {{#if item.isWeapon}}
+            {{#if item.system.isFav}}
+            <div class="favorite item weapon grid align-center w-100" style="grid-template-columns: 50px 2fr 1fr 1fr 50px;" data-item-id="{{item._id}}">
+                <div class="icon weapon-roll" style="width: 50px; display: flex; align-items: center; justify-content: flex-start;"><img class="icon" src="{{item.img}}" title="{{item.name}}" width="36" height="36" style="border: 1px solid white; border-radius: 3px;" onerror="this.style.display='none'"/></div>
+                <div class="name weapon-roll" style="text-align: left; cursor: pointer;"><b class="talent-name">{{item.name}}</b></div>
+                <div class="bonus" style="text-align: center;">{{item.system.bonus}}</div>
+                <div class="damage" style="text-align: center;">{{item.system.damage}}</div>
+                <div class="button" style="display: flex; justify-content: flex-end; align-items: center;">
+                    <a class="item-control fav-togle" style="flex: 0 0 auto;" title='{{localize "UI.FAVORITE"}}'>
+                        {{#if item.system.isFav}}<i class="fas fa-star"></i>{{else}}<i class="far fa-star"></i>{{/if}}
+                    </a>
+                </div>
+            </div>
+            {{/if}}
+            {{/if}}
+            {{/each}}
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #846758; margin: 10px 0; opacity: 0.5;">
+
+        <!-- 3. Rustningar -->
+        <div class="armor grid center light-border w-100" style="grid-template-columns: 50px 2fr 1.5fr 50px;">
+            <div></div>
+            <b style="text-align: left; font-family: Berolina, serif; font-size: 1.4em;">rustning</b>
+            <b style="text-align: center; font-family: Berolina, serif; font-size: 1.4em;">skyddsvärde</b>
+            <div></div>
+        </div>
+        <div class="scrollable">
+            {{#each items as |item|}}
+            {{#if item.isArmor}}
+            {{#if item.system.isFav}}
+            <div class="favorite item armor grid align-center w-100" style="grid-template-columns: 50px 2fr 1.5fr 50px;" data-item-id="{{item._id}}">
+                <div class="icon-box armor-roll" style="width: 50px; display: flex; align-items: center; justify-content: flex-start;"><img class="icon" src="{{item.img}}" title="{{item.name}}" width="36" height="36" style="border: 1px solid white; border-radius: 3px;" onerror="this.style.display='none'"/></div>
+                <div class="name armor-roll" style="text-align: left; cursor: pointer;"><b class="talent-name">{{item.name}}</b></div>
+                <div class="protection" style="text-align: center;">{{item.system.protection}}</div>
+                <div class="button" style="display: flex; justify-content: flex-end; align-items: center;">
+                    <a class="item-control fav-togle" style="flex: 0 0 auto;" title='{{localize "UI.FAVORITE"}}'>
+                        {{#if item.system.isFav}}<i class="fas fa-star"></i>{{else}}<i class="far fa-star"></i>{{/if}}
+                    </a>
+                </div>
+            </div>
+            {{/if}}
+            {{/if}}
+            {{/each}}
+        </div>
+
+    </div>
+</div>

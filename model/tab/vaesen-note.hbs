@@ -1,0 +1,8 @@
+<div class="flex row full" style="align-items: stretch; gap: 10px;">
+    <div class="flex column heavy-border notepad" style="background: #ffffff !important; background-image: none !important; flex: 1; min-height: 250px;">
+        <b class="title" style="width: 85%; margin: auto;">{{localize "HEADER.NOTES"}}</b>
+        <div style="background: #ffffff !important; padding: 10px;">
+            {{editor noteHTML target="system.note" button=true owner=owner editable=editable engine="prosemirror" collaborate=false}}
+        </div>
+    </div>
+</div>

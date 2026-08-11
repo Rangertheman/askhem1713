@@ -1,0 +1,96 @@
+{
+    "id": "askhem1713",
+    "title": "Askhem Anno 1713",
+    "description": "A system for playing Askhem Anno 1713, a Swedish tabletop roleplaying game set in the 18th century.",
+    "version": "1.0.0",
+    "esmodules": [
+        "apps/character-wizard.js",
+        "script/hooks.js"
+    ],
+    "initiative": "1d10",
+    "media": [
+        {
+            "type": "cover",
+            "url": "systems/askhem1713/asset/welcome.jpg",
+            "loop": false,
+            "flags": {}
+        }
+    ],
+    "background": "systems/askhem1713/asset/welcome.jpg",
+    "styles": [
+        "style/index.css",
+        "style/common.css",
+        "style/player.css",
+        "style/tab/player-main.css",
+        "style/tab/player-combat.css",
+        "style/tab/player-talent.css",
+        "style/tab/player-gear.css",
+        "style/tab/player-note.css",
+        "style/npc.css",
+        "style/tab/npc-main.css",
+        "style/tab/npc-combat.css",
+        "style/tab/npc-talent.css",
+        "style/tab/npc-gear.css",
+        "style/tab/npc-note.css",
+        "style/tab/vaesen-main.css",
+        "style/tab/vaesen-combat.css",
+        "style/tab/vaesen-gear.css",
+        "style/tab/vaesen-note.css",
+        "style/dialog/roll.css",
+        "style/tab/changelog.css"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json",
+            "flags": {}
+        },
+        {
+            "lang": "sv",
+            "name": "Svenska",
+            "path": "lang/sv.json",
+            "flags": {}
+        }
+    ],
+    "packs": [
+        {
+            "name": "askhem-anno-1713",
+            "label": "Askhem Anno 1713",
+            "system": "askhem1713",
+            "path": "packs/askhem-anno-1713",
+            "type": "Adventure",
+            "banner": "systems/askhem1713/asset/Askhem-logo.jpg",
+            "folder": "Askhem Anno 1713"
+        }
+    ],
+    "grid": {
+        "units": "m"
+    },
+    "socket": true,
+    "license": "LICENSE.txt",
+    "authors": [],
+    "relationships": {
+        "modules": [
+            {
+                "id": "foundryvtt-simple-calendar",
+                "type": "recommended",
+                "compatibility": {}
+            },
+            {
+                "id": "yze-combat",
+                "type": "recommended",
+                "compatibility": {}
+            },
+            {
+                "id": "dice-so-nice",
+                "type": "recommended",
+                "compatibility": {}
+            }
+        ]
+    },
+    "compatibility": {
+        "minimum": "13",
+        "verified": "14.365"
+    }
+}

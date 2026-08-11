@@ -1,0 +1,56 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="npc flex column full">
+    <!-- ÖVERGRIPANDE BLOCK OVANFÖR TABBARNA: PORTRÄTT, NAMN, STYRKA & BESKRIVNING -->
+    <div class="header flex column heavy-border" style="margin-bottom: 10px; width: 99%; padding: 10px;">
+      <div style="display: flex; gap: 10px; margin-bottom: 0; align-items: center;">
+        <!-- Större porträttbild till vänster inramad med borderimg -->
+        <div class="card-holder" style="flex-shrink: 0; margin-right: 10px;">
+          <div class="vaesen chat-card" style="margin: 0; width: 145px;">
+            <div class="card-content borderimg" style="padding: 8px; display: flex; justify-content: center; align-items: center; box-sizing: border-box;">
+              <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="width: 125px !important; height: 125px !important; min-width: 125px !important; min-height: 125px !important; object-fit: cover; border: none; cursor: pointer; flex-shrink: 0; box-sizing: border-box;" />
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fält för namn, styrka och beskrivning till höger om porträttet -->
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div class="row-fields" style="display: flex; gap: 10px;">
+            <div class="name" style="flex: 2;">
+              <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">namn:</b>
+              <input name="name" type="text" value="{{actor.name}}" style="text-align: left; width: 100%; padding-left: 5px;" placeholder="Namn" />
+            </div>
+            <div class="strength" style="flex: 1;">
+              <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">styrka:</b>
+              <input name="system.attributes.strength.value" type="number" value="{{system.attributes.strength.value}}" style="text-align: left; width: 100%; padding-left: 5px;" />
+            </div>
+          </div>
+          
+          <div style="width: 100%;">
+            <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">beskrivning:</b>
+            <div style="width: 100%;">
+              <textarea name="system.information" style="height: 90px; width: 100%; resize: none; background: #ffffff; border: 1px solid #846758; padding: 6px; text-align: left; font-family: Lin, sans-serif; font-size: 1.2em; color: #412017; line-height: 1.4em; box-sizing: border-box;">{{system.information}}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABBAR OCH INNEHÅLL -->
+    <div class="flex column left" style="width: 99%;">
+      <div class="sheet-tabs tabs flex row" data-group="primary">
+        <b class="item" data-tab="main">{{localize "TAB.MAIN"}}</b>
+        <b class="item" data-tab="note">{{localize "TAB.NOTE"}}</b>
+      </div>
+
+      <div class="sheet-body flex row">
+        <div class="tab" data-group="primary" data-tab="main">
+          {{> systems/askhem1713/model/tab/npc-main.hbs}}
+        </div>
+
+        <div class="tab note" data-group="primary" data-tab="note">
+          {{> systems/askhem1713/model/tab/npc-note.hbs}}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
