@@ -15,6 +15,7 @@ This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. The Y
   <img src="asset/Year-Zero-Engine-vit.png" alt="Year Zero Engine Logo" width="200">
 </a>
 
+
 For more information, please see the [Year Zero Engine License Agreement](https://freeleaguepublishing.com/wp-content/uploads/2026/03/Year-Zero-Engine-License-Agreement-version-1.1.pdf).
 
 ## License
