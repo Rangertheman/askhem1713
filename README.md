@@ -11,7 +11,9 @@ This system is built upon and adapted from the official [Vaesen Foundry VTT syst
 ## Legal Notices
 This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. The Year Zero Engine System Reference Document is used under Fria Ligan AB’s Free Tabletop License.
 
-[![Year Zero Engine Logo](asset/Year-Zero-Engine-vit.png)]
+<a href="https://freeleaguepublishing.com/wp-content/uploads/2026/03/Year-Zero-Engine-License-Agreement-version-1.1.pdf">
+  <img src="asset/Year-Zero-Engine-vit.png" alt="Year Zero Engine Logo" width="200">
+</a>
 
 For more information, please see the [Year Zero Engine License Agreement](https://freeleaguepublishing.com/wp-content/uploads/2026/03/Year-Zero-Engine-License-Agreement-version-1.1.pdf).
 
