@@ -4,11 +4,13 @@
 * Anpassa rollformulär, SLP-formulär och Monster-formulär till Askhem
 * Anpassa föremålskort till Askhem
 * Skapa föremål och tabeller
-* Byta ut tärningar och initiativkort med specialgjorda kort
+* Byta ut tärningar och initiativkort mot specialgjorda kort
 
 # RISK
 
-* Konflikt mellan klasser om spelledaren har båda systemen installerade. LÖSNING: Byta ut alla klasser och namnrymder mot Askhem
+* Konflikt mellan klasser om spelledaren har båda systemen installerade. LÖSNING: Byta ut alla klasser och namnrymder från vaesen till askhem.
 
 # SPECIALLÖSNINGAR
+
+* tba
 
