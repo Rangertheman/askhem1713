@@ -1,4 +1,6 @@
-# Askhem Anno 1713
+<p align="center">
+  <img src="asset/askhem_black_logo.png" alt="Askhem Logo" width="200"><br>
+</p>
 
 <i><b>Askhem Anno 1713</b></i> is copyright © 2021 Jon Aspehelm / Guldfink Förlag. Used with permission.
 
