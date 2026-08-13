@@ -1,0 +1,77 @@
+.askhem .monster .attributes .attribute {
+    font-size: .92em;   
+    flex-basis: 25%;
+    border-bottom: none;
+    
+}
+
+.askhem .monster .attributes .attribute b:hover {
+    text-shadow: 0 0 10px darkolivegreen;
+    cursor: pointer;
+}
+
+.askhem .monster .attributes .attribute input {
+    margin: 4px;
+}
+
+.askhem .monster .conditions .scrollable {
+    overflow-y: auto;
+    height: fit-content;
+}
+
+.askhem .monster .conditions .condition.item.active {
+    border: 1px solid red;
+}
+
+.askhem .monster .conditions .condition.item:hover {
+    text-shadow: 0 0 10px darkolivegreen;
+    cursor: pointer;
+}
+
+.askhem .monster .conditions .condition.item:nth-child(even) {
+    background-color: #d6c9c2;
+}
+
+.askhem .monster .conditions .condition.item:nth-child(odd) {
+    background-color: #ebe4e0;
+}
+
+.askhem .monster .conditions .condition .icon {
+    flex-basis: 5%;
+}
+
+.askhem .monster .conditions .condition img.icon {
+    border: 0;
+}
+
+.askhem .monster .conditions .condition .name {
+    flex-basis: 75%;
+}
+
+.askhem .monster .conditions .condition .bonus {
+    flex-basis: 10%;
+}
+
+.askhem .monster .conditions .condition .description {
+    flex-basis: 50%;
+}
+
+.askhem .monster .conditions .condition .button {
+    flex-basis: 20%;
+}
+
+.askhem .monster .information .editor {
+    padding: 0;
+}
+
+.askhem .monster .information .editor-content {
+    padding: 0 5px;
+}
+
+.askhem .monster .information .editor,
+.askhem .monster .information .editor-content {
+    width: 100%;
+    height: 100%;
+    max-height: 123px;
+    background-color: #d6c9c2;
+}

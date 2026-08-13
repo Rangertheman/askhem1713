@@ -1,15 +1,15 @@
 import { push } from "./roll.js";
 
-export default class ChatMessageVaesen extends ChatMessage {
+export default class ChatMessageAskhem extends ChatMessage {
   prepareData() {
     super.prepareData();
     this._shimFlags();
-    if (!this.flags.vaesen?.item?.data && this.flags.vaesen?.item?.id) {
-      const itemData = this.getFlag("vaesen", "use.consumed.deleted")?.find(
-        (i) => i._id === this.flags.vaesen.item.id
+    if (!this.flags.askhem?.item?.data && this.flags.askhem?.item?.id) {
+      const itemData = this.getFlag("askhem", "use.consumed.deleted")?.find(
+        (i) => i._id === this.flags.askhem.item.id
       );
       if (itemData)
-        Object.defineProperty(this.flags.vaesen.item, "data", {
+        Object.defineProperty(this.flags.askhem.item, "data", {
           value: itemData,
         });
     }
@@ -36,7 +36,7 @@ export default class ChatMessageVaesen extends ChatMessage {
     const elements = html instanceof HTMLElement ? [html] : html;
     for (let i = 0; i < elements.length; i++) {
       const el = elements[i];
-      if (el.classList && el.classList.contains("vaesen.chat-card")) {
+      if (el.classList && el.classList.contains("askhem.chat-card")) {
         let user = game.actors.get(el.getAttribute("data-owner-id"));
         const buttons = el.querySelectorAll(".push");
         if (user && !user.isOwner) {
@@ -67,32 +67,21 @@ export async function buildChatCard(type, data) {
     case "armor":
       message =
         `<div class="card-holder">
-              <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-              <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<div><b>" +
-        game.i18n.localize("ARMOR.PROTECTION") +
-        ": </b>" +
-        data.system.protection +
-        "</div>" +
-        "<div><b>" +
-        game.i18n.localize("ARMOR.AGILITY") +
-        ": </b>" +
-        data.system.agility +
-        "</div>" +
-        "<div><b>" +
-        game.i18n.localize("ARMOR.AVAILABILITY") +
-        ": </b>" +
-        data.system.availability +
-        "</div>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <div><b>` + game.i18n.localize("ARMOR.PROTECTION") + `: </b>` + data.system.protection + `</div>
+                  <div><b>` + game.i18n.localize("ARMOR.AGILITY") + `: </b>` + data.system.agility + `</div>
+                  <div><b>` + game.i18n.localize("ARMOR.AVAILABILITY") + `: </b>` + data.system.availability + `</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         token: token,
         speaker: ChatMessage.getSpeaker(),
@@ -112,42 +101,26 @@ export async function buildChatCard(type, data) {
       }
       let testName = game.i18n.localize(label);
       if (data.system.description != "") {
-        desc =
-          "<b>" +
-          game.i18n.localize("ATTACK.DESCRIPTION") +
-          ": </b>" +
-          data.system.description +
-          "</br>";
+        desc = data.system.description + "</br>";
       }
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("ATTACK.ATTRIBUTE") +
-        ": </b>" +
-        testName +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("ATTACK.DAMAGE") +
-        ": </b>" +
-        data.system.damage +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("ATTACK.RANGE") +
-        ": </b>" +
-        data.system.range +
-        "</br>" +
-        desc +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("ATTACK.ATTRIBUTE") + `: </b>` + testName + `</br>
+                  <b>` + game.i18n.localize("ATTACK.DAMAGE") + `: </b>` + data.system.damage + `</br>
+                  <b>` + game.i18n.localize("ATTACK.RANGE") + `: </b>` + data.system.range + `</br>
+                  ` + desc + `
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -158,27 +131,20 @@ export async function buildChatCard(type, data) {
     case "condition":
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("CONDITION.BONUS") +
-        ": </b>" +
-        data.system.bonus +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("CONDITION.DESCRIPTION") +
-        ": </b>" +
-        data.system.description +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("CONDITION.BONUS") + `: </b>` + data.system.bonus + `</br>
+                  ` + data.system.description + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -199,35 +165,22 @@ export async function buildChatCard(type, data) {
 
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        game.i18n.localize("CRITICAL_INJURY.NAME") +
-        ": " +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("CRITICAL_INJURY.TYPE") +
-        `: </b><span class="title-case">` +
-        data.system.type +
-        "</span></br>" +
-        "<b>" +
-        game.i18n.localize("CRITICAL_INJURY.FATAL") +
-        ": </b>" +
-        data.system.fatal +
-        "</br>" +
-        timeLimit +
-        "<b>" +
-        game.i18n.localize("CRITICAL_INJURY.EFFECT") +
-        ": </b>" +
-        data.system.effect +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + game.i18n.localize("CRITICAL_INJURY.NAME") + `: ` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("CRITICAL_INJURY.TYPE") + `: </b><span class="title-case">` + data.system.type + `</span></br>
+                  <b>` + game.i18n.localize("CRITICAL_INJURY.FATAL") + `: </b>` + data.system.fatal + `</br>
+                  ` + timeLimit + `
+                  ` + data.system.effect + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -240,12 +193,7 @@ export async function buildChatCard(type, data) {
       let risk = "";
 
       if (data.system.description != "") {
-        description =
-          "<b>" +
-          game.i18n.localize("GEAR.DESCRIPTION") +
-          ": </b>" +
-          data.system.description +
-          "</br>";
+        description = data.system.description + "</br>";
       }
       if (data.system.risk != "") {
         risk =
@@ -258,34 +206,23 @@ export async function buildChatCard(type, data) {
 
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("GEAR.BONUS") +
-        ": </b>" +
-        data.system.bonus +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("GEAR.AVAILABILITY") +
-        ": </b>" +
-        data.system.availability +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("GEAR.EFFECT") +
-        ": </b>" +
-        data.system.effect +
-        "</br>" +
-        description +
-        risk +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("GEAR.BONUS") + `: </b>` + data.system.bonus + `</br>
+                  <b>` + game.i18n.localize("GEAR.AVAILABILITY") + `: </b>` + data.system.availability + `</br>
+                  <b>` + game.i18n.localize("GEAR.EFFECT") + `: </b>` + data.system.effect + `</br>
+                  ` + description + `
+                  ` + risk + `
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -296,27 +233,20 @@ export async function buildChatCard(type, data) {
     case "magic":
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("MAGIC.CATEGORY") +
-        ": </b>" +
-        data.system.category +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("MAGIC.DESCRIPTION") +
-        ": </b>" +
-        data.system.description +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("MAGIC.CATEGORY") + `: </b>` + data.system.category + `</br>
+                  ` + data.system.description + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -327,22 +257,19 @@ export async function buildChatCard(type, data) {
     case "talent":
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("TALENT.DESCRIPTION") +
-        ": </b>" +
-        data.system.description +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  ` + data.system.description + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
 
       chatData = {
         speaker: ChatMessage.getSpeaker(),
@@ -373,34 +300,23 @@ export async function buildChatCard(type, data) {
 
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("UPGRADE.COST") +
-        ": </b>" +
-        data.system.cost +
-        "</br>" +
-        prereq +
-        "<b>" +
-        game.i18n.localize("UPGRADE.FUNCTION") +
-        ": </b>" +
-        data.system.function +
-        "</br>" +
-        asset +
-        "<b>" +
-        game.i18n.localize("TALENT.DESCRIPTION") +
-        ": </b>" +
-        data.system.description +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("UPGRADE.COST") + `: </b>` + data.system.cost + `</br>
+                  ` + prereq + `
+                  <b>` + game.i18n.localize("UPGRADE.FUNCTION") + `: </b>` + data.system.function + `</br>
+                  ` + asset + `
+                  ` + data.system.description + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -419,42 +335,23 @@ export async function buildChatCard(type, data) {
       }
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("WEAPON.DAMAGE") +
-        ": </b>" +
-        data.system.damage +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("WEAPON.RANGE") +
-        ": </b>" +
-        data.system.range +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("WEAPON.BONUS") +
-        ": </b>" +
-        data.system.bonus +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("WEAPON.AVAILABILITY") +
-        ": </b>" +
-        data.system.availability +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("WEAPON.SKILL") +
-        ": </b>" +
-        skill +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("WEAPON.DAMAGE") + `: </b>` + data.system.damage + `</br>
+                  <b>` + game.i18n.localize("WEAPON.RANGE") + `: </b>` + data.system.range + `</br>
+                  <b>` + game.i18n.localize("WEAPON.BONUS") + `: </b>` + data.system.bonus + `</br>
+                  <b>` + game.i18n.localize("WEAPON.AVAILABILITY") + `: </b>` + data.system.availability + `</br>
+                  <b>` + game.i18n.localize("WEAPON.SKILL") + `: </b>` + skill + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
       chatData = {
         speaker: ChatMessage.getSpeaker(),
         user: game.user.id,
@@ -465,27 +362,20 @@ export async function buildChatCard(type, data) {
     case "relationship":
       message =
         `<div class="card-holder">
-          <img src="` +
-        token +
-        `" width="45" height="45" class="roll-token" />
-          <div class='chat-flavor'>` +
-        data.name.toUpperCase() +
-        "</div>" +
-        "<div class='row center'><img src='" +
-        data.img +
-        "' width=50 height=50/></div>" +
-        "<div class='chat-item-info column'>" +
-        "<b>" +
-        game.i18n.localize("BIO.RELATIONSHIP") +
-        ": </b>" +
-        data.system.description +
-        "</br>" +
-        "<b>" +
-        game.i18n.localize("NOTES") +
-        ": </b>" +
-        data.system.notes +
-        "</br>" +
-        `</div></div>`;
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("BIO.RELATIONSHIP") + `: </b>` + data.system.description + `</br>
+                  <b>` + game.i18n.localize("NOTES") + `: </b>` + data.system.notes + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
 
       chatData = {
         speaker: ChatMessage.getSpeaker(),
@@ -502,13 +392,18 @@ async function _onPush(event) {
   event.preventDefault();
   console.log("Askhem | _onPush klickades!", event);
 
-  let chatCard = event.currentTarget.closest(".chat-message");
+  let chatCard = event.currentTarget.closest(".chat-message") || event.currentTarget.closest(".message");
   if (!chatCard) {
-    console.log("Askhem | Hittade inget .chat-message element.");
+    console.log("Askhem | Hittade inget .chat-message eller .message element.");
     return;
   }
   
-  let messageId = chatCard.dataset.messageId;
+  let messageId = chatCard.dataset.messageId || chatCard.getAttribute("data-message-id");
+  if (!messageId) {
+    console.log("Askhem | Hittade inget meddelande-ID på elementet.");
+    return;
+  }
+
   let message = game.messages.get(messageId);
   if (!message) {
     console.log("Askhem | Hittade inget meddelande med ID:", messageId);

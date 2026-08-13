@@ -1,6 +1,6 @@
 import { conditions } from "../util/conditions.js";
 
-export class VaesenTokenHUD extends foundry.applications.hud.TokenHUD {
+export class AskhemTokenHUD extends foundry.applications.hud.TokenHUD {
 
   constructor(...args) {
     super(...args);
@@ -10,7 +10,6 @@ export class VaesenTokenHUD extends foundry.applications.hud.TokenHUD {
     var actor = this.object.document.actor;
 
     if (actor.type === "player") {  
-      // console.log("player choices", super._getStatusEffectChoices());
       return super._getStatusEffectChoices();
     }
 
@@ -20,20 +19,16 @@ export class VaesenTokenHUD extends foundry.applications.hud.TokenHUD {
         if (key.startsWith("systems/askhem1713/asset/status/"))
           delete statuses[key];
       }
-      // console.log("npc choices", statuses);
       return statuses;
     }
 
-    if (actor.type === "vaesen") {
-      // console.log("vasen choices: ", actor.items.contents);
-      let vaesenActions = {};
+    if (actor.type === "monster") {
+      let monsterActions = {};
       for (let item of Object.values(actor.items.contents)) {
         if (item.type !== "condition") {
           continue;
         }
-        // console.log("condition choices item", item);
-        // console.log("actions choices", vaesenActions[item.img]);
-        vaesenActions[item.id] = {
+        monsterActions[item.id] = {
           cssClass: item.system.active ? "active" : "",
           id: item._id,
           src: item.img,
@@ -41,23 +36,20 @@ export class VaesenTokenHUD extends foundry.applications.hud.TokenHUD {
           isActive: item.system.active
         };
       }
-      // console.log("updated choices", vaesenActions);
-      return vaesenActions;
+      return monsterActions;
     }
   }
 
   async _onToggleEffect(effect, {active, overlay=false}={}) {
     var actor = this.object.document.actor;
     let img = effect.currentTarget;
-    // console.log("image", img);
-    if (actor.type !== "vaesen" || img.dataset.statusId == "fastAction" || img.dataset.statusId == "slowAction") {
+    if (actor.type !== "monster" || img.dataset.statusId == "fastAction" || img.dataset.statusId == "slowAction") {
       return super._onToggleEffect(effect, {active, overlay});
     }
     
     effect.preventDefault();
     effect.stopPropagation();
-    const result = await conditions.onVaesenCondition(actor, img.dataset.statusId);
-    // console.log("toggle result: ", result);
+    const result = await conditions.onActorCondition(actor, img.dataset.statusId);
 
     if ( this.hasActiveHUD ) canvas.tokens.hud.refreshStatusIcons();
     return result;

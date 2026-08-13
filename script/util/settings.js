@@ -1,7 +1,7 @@
 import { linkUnlinkActorData } from "./migrator.js";
 
 export const registerSystemSettings = function () {
-    game.settings.register("vaesen", "initiativeDeck", {
+    game.settings.register("askhem1713", "initiativeDeck", {
         name: "SETTINGS.INITIATIVE_DECK",
         hint: "SETTINGS.INITIATIVE_DECK_HINT",
         scope: "world",

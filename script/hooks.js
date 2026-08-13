@@ -1,7 +1,7 @@
-import { VaesenActor } from "./actor/vaesen.js";
+import { AskhemActor } from "./actor/askhem-actor.js";
 import { PlayerCharacterSheet } from "./sheet/player.js";
 import { NpcCharacterSheet } from "./sheet/npc.js";
-import { VaesenCharacterSheet } from "./sheet/vaesen.js";
+import { AskhemMonsterSheet } from "./sheet/monster.js";
 import {
   prepareRollNewDialog,
   push,
@@ -9,43 +9,38 @@ import {
   totalRoll as totalRoll,
 } from "./util/roll.js";
 import { registerSystemSettings } from "./util/settings.js";
-import { vaesen } from "./config.js";
+import { askhem } from "./config.js";
 import { conditions } from "./util/conditions.js";
 import { YearZeroRollManager } from "./lib/yzur.js";
-import { vaesenItemSheet } from "./sheet/itemSheet.js";
+import { AskhemItemSheet } from "./sheet/itemSheet.js";
 import { migrate } from "./util/migrator.js";
-import { VaesenTokenHUD } from "./util/token.js";
-import ChatMessageVaesen from "./util/chat.js";
+import { AskhemTokenHUD } from "./util/token.js";
+import ChatMessageAskhem from "./util/chat.js";
 import { registerDefaultFonts } from "./fonts.js";
 import { ArchetypeSheet } from "./sheet/archetypeSheet.js";
 import { AskhemCharacterWizard } from "../apps/character-wizard.js";
 
 Hooks.on("renderChatMessageHTML", (app, html, data) => {
-  ChatMessageVaesen.activateListeners(html);
+  ChatMessageAskhem.activateListeners(html);
 });
 
 Hooks.once("init", async () => {
-  console.log("Vaesen | Initializing Vaesen System");
-  registerDefaultFonts();
-  CONFIG.vaesen = vaesen;
+ registerDefaultFonts();
+  CONFIG.askhem = askhem;
   CONFIG.Combat.initiative = { formula: "1d10", decimals: 0 };
-  CONFIG.Actor.documentClass = VaesenActor;
-  CONFIG.ChatMessage.documentClass = ChatMessageVaesen;
+  CONFIG.Actor.documentClass = AskhemActor;
+  CONFIG.ChatMessage.documentClass = ChatMessageAskhem;
   CONFIG.anonymousSheet = {};
   CONFIG.roll = prepareRollNewDialog;
   CONFIG.push = push;
   CONFIG.Cards.presets = {
     initiative: {
-      label: "Initiative Deck",
-      src: "systems/askhem1713/asset/cards/initiative-deck.json",
+      label: "Askhem initiativkortlek",
+      src: "systems/askhem1713/asset/cards/askhem-initiative-deck.json",
       type: "deck",
     },
   };
   CONFIG.hasYZECombatActive = game.modules.get("yze-combat")?.active;
-  console.log("Vaesen | CONFIG.hasYZECombatActive: ", CONFIG.hasYZECombatActive);
-
-  CONFIG.hasYZECombatActive = game.modules.get("yze-combat")?.active;
-  console.log("Vaesen | YZE Combat Active: ", CONFIG.hasYZECombatActive);
 
   CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
     {
@@ -64,24 +59,25 @@ Hooks.once("init", async () => {
 
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
 
-  foundry.documents.collections.Actors.registerSheet("vaesen", PlayerCharacterSheet, {
+  foundry.documents.collections.Actors.registerSheet("askhem", PlayerCharacterSheet, {
     types: ["player"],
     makeDefault: true,
   });
-  foundry.documents.collections.Actors.registerSheet("vaesen", NpcCharacterSheet, {
+  foundry.documents.collections.Actors.registerSheet("askhem", NpcCharacterSheet, {
     types: ["npc"],
     makeDefault: true,
   });
-  foundry.documents.collections.Actors.registerSheet("vaesen", VaesenCharacterSheet, {
-    types: ["vaesen"],
+  // Uppdaterad registrering till "askhem" för monsterbladet
+  foundry.documents.collections.Actors.registerSheet("askhem", AskhemMonsterSheet, {
+    types: ["monster"],
     makeDefault: true,
   });
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
- foundry.documents.collections.Items.registerSheet("vaesen", vaesenItemSheet, { 
+ foundry.documents.collections.Items.registerSheet("askhem", AskhemItemSheet, { 
     types: ["criticalInjury", "weapon", "armor", "talent", "gear", "magic", "misery", "archetype", "skill"],
     makeDefault: true 
   });
-  foundry.documents.collections.Items.registerSheet("vaesen", ArchetypeSheet, {
+  foundry.documents.collections.Items.registerSheet("askhem", ArchetypeSheet, {
     types: ["archetype"],
     makeDefault: true
   });
@@ -134,8 +130,6 @@ Hooks.once("ready", async function () {
       actor = game.actors.get(message.speaker.actor);
     }
 
-    console.log("Askhem Debug | Lärd-knapp klickad. Action:", action, "MessageId:", messageId, "Actor:", actor?.name);
-
     if (action === "yes") {
       card.find("div").first().append("<p style='color: green; font-weight: bold; margin-top: 5px;'>Spelledaren godkände: Slaget räknas som en framgång!</p>");
       
@@ -159,8 +153,6 @@ Hooks.once("ready", async function () {
           speaker: ChatMessage.getSpeaker({ actor: actor }),
           whisper: whisperTargets
         });
-      } else {
-        console.log("Askhem Debug | Fel: Kunde inte härleda aktör från chattmeddelandets speaker.");
       }
     }
     
@@ -226,12 +218,11 @@ Hooks.once("ready", async function () {
     });
   }
 
-  let allVaesen = game.actors.filter((it) => it.type == "vaesen");
+  let allMonsters = game.actors.filter((it) => it.type == "monster");
 
-  allVaesen.forEach((vaesen) => {
-    let conditions = vaesen.items.filter((c) => c.type == "condition");
+  allMonsters.forEach((monster) => {
+    let conditions = monster.items.filter((c) => c.type == "condition");
     let count = 0;
-    console.log("conditions list: ", conditions);
     conditions.forEach((condition) => {
       count++;
       const img = "systems/askhem1713/asset/counter_tokens/" + count + ".png";
@@ -241,7 +232,7 @@ Hooks.once("ready", async function () {
 });
 
 Hooks.on("canvasReady", () => {
-  canvas.hud.token = new VaesenTokenHUD();
+  canvas.hud.token = new AskhemTokenHUD();
 });
 
 Hooks.on("updateActor", (actor, changes, diff, userId) => {
@@ -284,11 +275,11 @@ Hooks.on("combatRound", async function (e) {
 });
 
 Hooks.once("diceSoNiceReady", (dice3d) => {
-  dice3d.addSystem({ id: "vaesen", name: "Vaesen" }, "true");
+  dice3d.addSystem({ id: "askhem1713", name: "Askhem" }, "true");
   dice3d.addColorset({
-    name: "vaesen",
-    description: "Vaesen Dice",
-    category: "Vaesen",
+    name: "askhem1713",
+    description: "Akhem-tärningar",
+    category: "Askhem",
     foreground: "#2D1A00",
     background: "#e2c8b6",
     outline: "#402117",
@@ -313,11 +304,12 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
       "systems/askhem1713/asset/dsn/dsn-d6-5-bump.png",
       "systems/askhem1713/asset/dsn/dsn-d6-6-bump.png",
     ],
-    colorset: "vaesen",
-    system: "vaesen",
+    colorset: "askhem1713",
+    system: "askhem1713",
   });
   dice3d.addDicePreset(
     {
+      name: "ds",
       type: "ds",
       labels: [
         "systems/askhem1713/asset/dsn/dsn-d6-1.png",
@@ -335,15 +327,15 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
         "systems/askhem1713/asset/dsn/dsn-d6-5-bump.png",
         "systems/askhem1713/asset/dsn/dsn-d6-6-bump.png",
       ],
-      colorset: "vaesen",
-      system: "vaesen",
+      colorset: "askhem1713",
+      system: "askhem1713",
     },
     "d6"
   );
 });
 
 async function setupCards() {
-  const initiativeDeckId = game.settings.get("vaesen", "initiativeDeck");
+  const initiativeDeckId = game.settings.get("askhem1713", "initiativeDeck");
   const initiativeDeck = game.cards?.get(initiativeDeckId);
   if (initiativeDeckId && initiativeDeck) return;
   ui.notifications.info("UI.NoInitiativeDeckFound", { localize: true });
@@ -351,7 +343,7 @@ async function setupCards() {
   const data = await foundry.utils.fetchJsonWithTimeout(preset.src);
   const cardsCls = getDocumentClass("Cards");
   const newDeck = await cardsCls.create(data);
-  await game.settings.set("vaesen", "initiativeDeck", newDeck?.id);
+  await game.settings.set("askhem1713", "initiativeDeck", newDeck?.id);
   await newDeck?.shuffle({ chatNotification: false });
 }
 
@@ -368,9 +360,9 @@ function preloadHandlebarsTemplates() {
     "systems/askhem1713/model/npc.hbs",
     "systems/askhem1713/model/tab/npc-main.hbs",
     "systems/askhem1713/model/tab/npc-note.hbs",
-    "systems/askhem1713/model/vaesen.hbs",
-    "systems/askhem1713/model/tab/vaesen-main.hbs",
-    "systems/askhem1713/model/tab/vaesen-note.hbs",
+    "systems/askhem1713/model/monster.hbs",
+    "systems/askhem1713/model/tab/monster-main.hbs",
+    "systems/askhem1713/model/tab/monster-note.hbs",
     "systems/askhem1713/model/character-creation-dialog.hbs",
     "systems/askhem1713/model/character-advancement-dialog.hbs",
     "systems/askhem1713/model/items/criticalInjury.hbs",
@@ -418,14 +410,13 @@ actor.sheet.rollWeapon("${data.itemId}");`;
   if (command === "") return;
 
   let macro = game.macros.find((m) => m.name === data.text);
-  console.log(macro);
   if (!macro) {
     macro = await Macro.create({
       name: data.text,
       type: "script",
       img: data.img,
       command: command,
-      flags: { "vaesen.skillRoll": true },
+      flags: { "askhem.skillRoll": true },
     });
   }
 

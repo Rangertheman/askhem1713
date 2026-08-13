@@ -1,35 +1,35 @@
-.vaesen .npc .gears .scrollable {
+.askhem .npc .gears .scrollable {
     overflow-y: auto;
     height: fit-content;
     
 }
 
-.vaesen .npc .gears .gear.item:hover {
+.askhem .npc .gears .gear.item:hover {
     text-shadow: 0 0 10px darkolivegreen;
 }
 
-.vaesen .npc .gears .gear.item:nth-child(even) {
+.askhem .npc .gears .gear.item:nth-child(even) {
     background-color: #d6c9c2;
 }
 
-.vaesen .npc .gears .gear.item:nth-child(odd) {
+.askhem .npc .gears .gear.item:nth-child(odd) {
     background-color: #ebe4e0;
 }
 
 
 
-.vaesen .npc .gears .gear img.icon {
+.askhem .npc .gears .gear img.icon {
     border: 0;
     cursor: pointer;
 }
 
 
 
-.vaesen .npc .gears .gear .bonus {
+.askhem .npc .gears .gear .bonus {
     flex-basis: 15%;
 }
 
-.vaesen .npc .gears .gear .effect {
+.askhem .npc .gears .gear .effect {
     flex-basis: 40%;
 }
 

@@ -1,6 +1,6 @@
-export const vaesen = {};
+export const askhem = {};
 
-vaesen.skills = {
+askhem.skills = {
     craft: "SKILL.CRAFT",
     force: "SKILL.FORCE",
     closeCombat: "SKILL.CLOSE_COMBAT",
@@ -15,12 +15,12 @@ vaesen.skills = {
     insight: "SKILL.DISCOVERY"
 };
 
-vaesen.criticalInjuryOptions = {
-    ...vaesen.skills,
+askhem.criticalInjuryOptions = {
+    ...askhem.skills,
     "fear": "BONUS_TYPE.FEAR",
 };
 
-vaesen.bonusType = {
+askhem.bonusType = {
     none: "BONUS_TYPE.NONE",
     skill: "BONUS_TYPE.SKILL",
     ignoreConditionSkill: "BONUS_TYPE.IGNORE_CONDITIONS_SKILL",
@@ -32,35 +32,35 @@ vaesen.bonusType = {
     bonusPhysicalRecovery: "BONUS_TYPE.PHYSICAL_RECOVERY",
 };
 
-vaesen.bonusTypeRequiresSkill = ["skill", "ignoreConditionSkill", "damage"];
-vaesen.bonusTypeRequiresBonus = ["skill", "damage", "fear", "bonusMentalRecovery", "bonusPhysicalRecovery"];
-vaesen.bonusTypeDamageSkills = ["closeCombat", "force", "rangedCombat"];
+askhem.bonusTypeRequiresSkill = ["skill", "ignoreConditionSkill", "damage"];
+askhem.bonusTypeRequiresBonus = ["skill", "damage", "fear", "bonusMentalRecovery", "bonusPhysicalRecovery"];
+askhem.bonusTypeDamageSkills = ["closeCombat", "force", "rangedCombat"];
 
-vaesen.bonusTypeDamageSkillsOptions = {
+askhem.bonusTypeDamageSkillsOptions = {
     closeCombat: "SKILL.CLOSE_COMBAT",
     rangedCombat: "SKILL.RANGED_COMBAT",
     force: "SKILL.FORCE"
 }
 
 // select option set up
-vaesen.attackAttributeOptions = {
+askhem.attackAttributeOptions = {
     strength: "ATTRIBUTE.STRENGTH_ROLL",
     agility: "ATTRIBUTE.AGILITY_ROLL",
     sharpness: "ATTRIBUTE.SHARPNESS_ROLL",
     presence: "ATTRIBUTE.PRESENCE_ROLL"
 }
 
-vaesen.injuryTypeOptions = {
+askhem.injuryTypeOptions = {
     physical: "CONDITION.PHYSICAL",
     mental: "CONDITION.MENTAL"
 }
 
-vaesen.yesNoOptions = {
+askhem.yesNoOptions = {
     Yes: "YES",
     No: "NO"
 }
 
-vaesen.magicCategoryOptions = {
+askhem.magicCategoryOptions = {
     power: "MAGIC.POWER",
     enchantment: "MAGIC.ENCHANTMENT",
     curse: "MAGIC.CURSE",

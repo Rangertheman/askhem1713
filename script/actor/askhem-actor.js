@@ -1,6 +1,6 @@
 import { conditions } from "../util/conditions.js";
 
-export class VaesenActor extends Actor {
+export class AskhemActor extends Actor {
   prepareData() {
     super.prepareData();
     const actorData = this.system;
@@ -9,7 +9,6 @@ export class VaesenActor extends Actor {
 
   /* -------------------------------------------- */
   findStatusEffectById(id) {
-    // console.log("find by id: " + id);
     return Array.from(this.effects?.values()).find(
       (it) => it.data.flags.core?.statusId === id
     );
@@ -17,7 +16,6 @@ export class VaesenActor extends Actor {
 
   /* -------------------------------------------- */
   async deleteStatusEffectById(id, options = { renderSheet: true }) {
-    // console.log("delete by id: " + id);
     const effects = Array.from(this.effects?.values()).filter(
       (it) => it.data.flags.core?.statusId === id
     );
@@ -26,12 +24,8 @@ export class VaesenActor extends Actor {
 
   /* -------------------------------------------- */
   async _deleteStatusEffects(effects, options) {
-    // console.log(effects);
-    // console.log(effects.map((it) => it.id));
-    // console.log(options);
     const ids = Array.from(effects.map((it) => it.id));
     await this.deleteEmbeddedDocuments("ActiveEffect", ids, options);
-    //await this._deleteStatusEffectsByIds(effects.map(it => it.id), options);
   }
 
   /* -------------------------------------------- */
@@ -56,10 +50,7 @@ export class VaesenActor extends Actor {
     statusEffect,
     options = { renderSheet: false, overlay: false }
   ) {
-    //await this.deleteStatusEffectById(statusEffect.id, options);
     const effect = foundry.utils.duplicate(statusEffect);
-    // console.log(effect.label);
-    // console.log(effect.id);
     await this.createEmbeddedDocuments(
       "ActiveEffect",
       [
@@ -70,7 +61,6 @@ export class VaesenActor extends Actor {
           label: effect.label,
           icon: effect.icon,
           origin: this.uuid,
-
         },
       ],
       options
@@ -84,8 +74,6 @@ export class VaesenActor extends Actor {
   }
 
   async toggleStatusEffectById(id, options = { renderSheet: true }) {
-    // console.log("over to the character for toggeling");
-
     const effect = this.findStatusEffectById(id);
 
     if (effect) {
@@ -96,8 +84,7 @@ export class VaesenActor extends Actor {
   }
 
   async toggleStatusEffect(statusId, options) {
-    // console.log("statusID: ", statusId);
-    if (this.type != "vaesen")
+    if (this.type != "monster")
       return await super.toggleStatusEffect(statusId, options);
 
     await conditions.onVaesenCondition(this, statusId);
@@ -110,7 +97,7 @@ export class VaesenActor extends Actor {
       data.type == "player" ||
       data.type == "headquarter" ||
       (data.type == "npc" && (await game.settings.get("askhem1713", "npcLink"))) ||
-      (data.type == "vaesen" &&
+      (data.type == "monster" &&
         (await game.settings.get("askhem1713", "vaesenLink")));
 
     const displayName = link
@@ -152,10 +139,6 @@ export class VaesenActor extends Actor {
     }
 
     const flattenChanges = foundry.utils.flattenObject(changed);
-    const changedText = game.i18n.localize("CHANGELOG.CHANGED");
-    const toText = game.i18n.localize("CHANGELOG.TO");
-    const byText = game.i18n.localize("CHANGELOG.BY");
-    const atText = game.i18n.localize("CHANGELOG.AT");
     const dateChanged = new Date().toLocaleString();
 
     let changelogArray = actor.system.changelog ?? [];
@@ -202,10 +185,7 @@ export class VaesenActor extends Actor {
 
   async _handleItem(document, userId, textType) {
     const actorChanged = this;
-    // if we are not dealing with a player or headquarter, we don't want to log the changes
     if (actorChanged.type != "player" && actorChanged.type != "headquarter") return;
-    const byText = game.i18n.localize("CHANGELOG.BY");
-    const atText = game.i18n.localize("CHANGELOG.AT");
     const dateChanged = new Date().toLocaleString();
     const userName = game.users.get(userId)?.name;
     let changelogArray = this.system.changelog;

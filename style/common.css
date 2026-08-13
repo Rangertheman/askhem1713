@@ -71,98 +71,98 @@
 	grid-template-columns: 40px 40px 40px 40px;
 }
 
-.vaesen .fit-height{
+.askhem .fit-height{
     height: fit-content;
 }
 
-.vaesen .item-desc{
+.askhem .item-desc{
     text-align: justify;
     font-size: .8em;
     justify-content: space-between;
 
 }
 
-.vaesen .portrait{
+.askhem .portrait{
     margin-bottom: 0px;
 }
 
-.vaesen .light-border {
+.askhem .light-border {
     border: 1px dashed #826657;
 }
 
-.vaesen .name{
+.askhem .name{
     text-align: center;
 }
 
-.vaesen .flex {
+.askhem .flex {
     display: flex;
 }
 
-.vaesen .row {
+.askhem .row {
     flex-direction: row;
 }
 
-.vaesen .column {
+.askhem .column {
     flex-direction: column;
 }
 
-.vaesen .full {
+.askhem .full {
     width: 100%;
     height: 100%;
 }
 
-.vaesen .wrap {
+.askhem .wrap {
     flex-wrap: wrap;
 }
 
-.vaesen .center {
+.askhem .center {
     text-align: center;
  
     
 }
 
-.vaesen .margin {
+.askhem .margin {
     margin: 5px;
 }
 
-.vaesen .wrapper {
+.askhem .wrapper {
     margin-bottom: 5px;
 }
 
-.vaesen .wrapper:last-child {
+.askhem .wrapper:last-child {
     margin-bottom: 0px;
 }
 
-.vaesen .grow {
+.askhem .grow {
     flex-grow: 1;
 }
 
-.vaesen .align-center {
+.askhem .align-center {
     align-items: center;
 }
 
-.vaesen .align-end {
+.askhem .align-end {
     align-items: flex-end;
 }
 
-.vaesen .space-around {
+.askhem .space-around {
     justify-content: space-around;
 }
 
-.vaesen .space-between {
+.askhem .space-between {
     justify-content: space-between;
 }
 
 
 
-.vaesen .tabs .item.active{
+.askhem .tabs .item.active{
 	text-shadow: none;
 	border-bottom: 1px solid #412017;
 	color: #412017;
 	
 }
 
-.vaesen .tabs .item{
+.askhem .tabs .item{
 	text-shadow: none;
 	border-bottom: 1px solid #af9c8d;
 	color: #af9c8d;
@@ -170,24 +170,24 @@
 	
 }
 
-.vaesen .left-block{
+.askhem .left-block{
     width: 60%;
 }
-.vaesen .right-block{
+.askhem .right-block{
     width: 40%;
 }
 
-.vaesen .tab {
+.askhem .tab {
     width: 100%;
 }
 
-.vaesen .sheet-body {
+.askhem .sheet-body {
     overflow: hidden;
     flex-grow: 1;
     
 }
 
-.vaesen .sheet-tabs {
+.askhem .sheet-tabs {
     padding: 5px;
     background-color: transparent;
 	margin-bottom: 0px;
@@ -195,45 +195,45 @@
    
 }
 
-.vaesen .sheet-tabs b:hover {
+.askhem .sheet-tabs b:hover {
     text-shadow: 0 0 10px darkolivegreen;
 }
 
-.vaesen .hqtr-data{
+.askhem .hqtr-data{
     min-width: 645px;
 
 }
-.vaesen input {
+.askhem input {
     background-color: #e7e7e7;
     border-color: #826657;
 }
 
-.vaesen .npc .attribute input,
-.vaesen .player .attribute input{
+.askhem .npc .attribute input,
+.askhem .player .attribute input{
     text-align: center;
     flex-basis: 66px;
     margin-left: 0px;
     margin-right: 5px;
 }
-.vaesen .attribute input{
+.askhem .attribute input{
     text-align: center;
     margin-right: auto;
     margin-left: auto;
 }
 
 
-.vaesen textarea {
+.askhem textarea {
     background-color: #e7e7e7;
     border-color: #846758;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.vaesen select {
+.askhem select {
     background-color: #e7e7e7;
     border-color: hsl(21, 20%, 43%);
 }
 
-.vaesen select[multiple] option:checked, .vaesen select[multiple]:focus option:checked {
+.askhem select[multiple] option:checked, .askhem select[multiple]:focus option:checked {
     background-color: #b5b3a4;
 }
 
@@ -248,24 +248,24 @@
 }
 
 
-.vaesen .second{
+.askhem .second{
     flex-grow: 1;
 	align-content: center;
 }
 
-.vaesen .logo img{
+.askhem .logo img{
 	border: none;
 	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.vaesen .logo {
+.askhem .logo {
 	flex-basis: 90%;
 	
 }
 
-.vaesen .bio{
+.askhem .bio{
 	flex-basis: 80%;
 	margin-bottom: 3px;
 }
@@ -273,7 +273,7 @@
 .motivation, .trauma, .dark-secret, .advantage, .memento{
 	width: 100%;
 }
-.vaesen .res{
+.askhem .res{
 	flex-basis: 20%;
 	margin-bottom: 3px;
 }
@@ -293,42 +293,42 @@
 }
 
 
-.vaesen p{
+.askhem p{
     margin: 0px;
     padding-bottom: 4px;
 }
 
-.vaesen.roll-dialog p{
+.askhem.roll-dialog p{
     margin: 7px 0px;
     padding-bottom: 0px;
 }
 
 
-.vaesen .dice-roll .dice-formula {
+.askhem .dice-roll .dice-formula {
     border: none;
     border-bottom: 1px solid #412017;
     background: transparent;
     border-radius: 0px;
 }
 
-.vaesen .dice-total{
+.askhem .dice-total{
     font-family: Baskerville, sans-serif;
     text-transform: uppercase;
     font-size: .9em;
 }
-.vaesen .dice-total.success {
+.askhem .dice-total.success {
     background: hsl(76, 32%, 73%);
     color: #344117;
 
 }
 
-.vaesen .dice-total.failure{
+.askhem .dice-total.failure{
     background: hsl(27, 32%, 73%);
     color: #411717;
 
 }
 
-.vaesen .dice-roll .dice-flavor{
+.askhem .dice-roll .dice-flavor{
     text-align: center;
     font-family: Baskerville, serif;
     font-size: 1em;
@@ -338,14 +338,14 @@
 }
 
 
-.vaesen .dice-infos{
+.askhem .dice-infos{
     text-align: center;
     font-size: 1em;
     font-family: 'Acme';
     color: #412017;
 }
 
-.vaesen .dice-button{
+.askhem .dice-button{
     font-family: Baskerfille, serif;
     margin-top: 3px;
     color: #412017;
@@ -543,8 +543,7 @@ border: none;
 }
 
 
-.vaesen .player .header .name input,
-.vaesen .headquarter .header .name input{ 
+.askhem .player .header .name input{ 
 	font-family: Acme, sans-serif;
 	font-size: 1em;
 	padding: 0px;
@@ -563,10 +562,9 @@ border: none;
 }
 
 
-.vaesen .player,
-.vaesen .headquarter,
-.vaesen .dialog, 
-.vaesen .item-sheet 
+.askhem .player,
+.askhem .dialog, 
+.askhem .item-sheet 
 {
 	background: #f9f8f6;
 	margin: -10px;
@@ -574,7 +572,7 @@ border: none;
 	padding: 8px;
 }
 
-.vaesen input{
+.askhem input{
 	font-family: Lin, sans-serif;
 	border: 8px solid transparent;
 	border-image: url(../asset/scooped_corners.svg) stretch;
@@ -585,12 +583,11 @@ border: none;
     height: 2rem;
 }
 
-.vaesen .left-block input {
+.askhem .left-block input {
     height: var(--form-field-height);
 }
 
-.vaesen .player .header input,
-.vaesen .headquarter .header input{
+.askhem .player .header input{
 	font-family: Lin, sans-serif;
 	border: 8px solid transparent;
 	border-image: url(../asset/scooped_corners.svg) stretch;
@@ -600,14 +597,29 @@ border: none;
     filter: drop-shadow(2px 2px hsl(13, 48%, 17%));
 }
 
-.vaesen .attribute{
+.askhem .attribute{
     justify-content: space-between;
 }
 
-.vaesen .attribute b.header:hover{
+.askhem .attribute b.header:hover{
     cursor: pointer;
     text-shadow: 0 0 10px #412017;
     
+}
+
+.askhem:not(.character-creation-form):not(.character-advancement-form) b.title {
+    font-family: Baskerville, serif;
+    font-size: 1.1em;
+    display: block;
+    text-align: center;
+    border: 1px solid #826657;
+    border-radius: 6px;
+    background-color: #e6dfd5;
+    color: #412017;
+    padding: 2px 10px;
+    
+    margin: 8px auto 4px auto !important; 
+    filter: drop-shadow(1px 1px 2px rgba(65, 32, 23, 0.2));
 }
 
 .item-info{

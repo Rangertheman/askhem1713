@@ -10,7 +10,7 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
 
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["vaesen", "sheet", "actor"],
+      classes: ["askhem", "sheet", "actor"],
       width: 750,
       height: "auto",
       resizable: true,

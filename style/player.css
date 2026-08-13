@@ -1,9 +1,9 @@
-.vaesen .player {
+.askhem .player {
     /* height: 100%; */
     width: 100%;
 }
 
-.vaesen .player .header .img-frame{
+.askhem .player .header .img-frame{
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
@@ -12,12 +12,12 @@
 	
 }
 
-.vaesen .player .header .profile-frame{
+.askhem .player .header .profile-frame{
 	position: absolute;
 	z-index: 1;
 	border: none;
 }
-.vaesen .player .header .profile-img{
+.askhem .player .header .profile-img{
 	position: absolute;
 	border: 1px transparent;
 	margin-top: 5px;
@@ -29,53 +29,53 @@
 
 
 
-.vaesen .player .header .name {
+.askhem .player .header .name {
     flex-basis: 50%;
 }
 
-.vaesen .player .header .age {
+.askhem .player .header .age {
     flex-basis: 25%;
 }
 
-.vaesen .player .header .age input {
+.askhem .player .header .age input {
     text-align: center;
 }
 
-.vaesen .player .header .archetype {
+.askhem .player .header .archetype {
     flex-basis: 50%;
 }
 
-.vaesen .player .header .resources {
+.askhem .player .header .resources {
     flex-basis: 25%;
 }
 
-.vaesen .player .header .resources b:hover {
+.askhem .player .header .resources b:hover {
     text-shadow: 0 0 10px darkolivegreen;
 	cursor: pointer;
 }
 
-.vaesen .player .header .resources input {
+.askhem .player .header .resources input {
     text-align: center;
 }
 
-.vaesen .player .header .capital {
+.askhem .player .header .capital {
     flex-basis: 25%;
 }
 
-.vaesen .player .header .capital input {
+.askhem .player .header .capital input {
     text-align: center;
 }
 
-.vaesen .player .header .experience {
+.askhem .player .header .experience {
     flex-basis: 25%;
 }
 
-.vaesen .player .header .experience input {
+.askhem .player .header .experience input {
     text-align: center;
 }
 
-.vaesen .player .conditions b.condition,
-.vaesen .player .conditions div.condition {
+.askhem .player .conditions b.condition,
+.askhem .player .conditions div.condition {
     flex-basis: 100%;
     border: 1px solid #826657;
     margin-left: 25px;
@@ -85,50 +85,50 @@
 }
 
 /****** Favorite Items ******/
-.vaesen .favorite.armor{
+.askhem .favorite.armor{
 	background: none;
 	margin: 0px;
 	padding: 0px;
 	justify-content: space-between;
 	margin-top: 2px;
 }
-.vaesen .favorite.weapon{
+.askhem .favorite.weapon{
 	background: none;
 	margin: 0px;
 	padding: 0px;
 	justify-content: space-between;
 	margin-top: 2px;
 }
-.vaesen .player .favorites .scrollable {
+.askhem .player .favorites .scrollable {
 	height: fit-content;
 }
 
-.vaesen .player .favorite.armor img.icon {
+.askhem .player .favorite.armor img.icon {
     border: 0;
 	width: 25px;
 	height: 25px;
 }
 
-.vaesen .player .favorite.weapon img.icon {
+.askhem .player .favorite.weapon img.icon {
     border: 0;
 	width: 25px;
 	height: 25px;
 }
 
-.vaesen .player .favorite.talent img.icon {
+.askhem .player .favorite.talent img.icon {
     border: 0;
 	width: 25px;
 	height: 25px;
 }
 
-.vaesen .player .askhem-hover-container {
+.askhem .player .askhem-hover-container {
     position: relative;
 }
 
-.vaesen .player .askhem-hover-container .askhem-hover-box {
+.askhem .player .askhem-hover-container .askhem-hover-box {
     display: none;
 }
 
-.vaesen .player .askhem-hover-container:hover .askhem-hover-box {
+.askhem .player .askhem-hover-container:hover .askhem-hover-box {
     display: block;
 }

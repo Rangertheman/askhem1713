@@ -1,0 +1,435 @@
+{
+  "name": "Askhem Initiative Deck",
+  "type": "deck",
+  "description": "<p>A deck of 10 initiative cards - Art by Jon Aspehelm.</p>",
+  "img": "systems/askhem1713/asset/backing.png",
+  "system": {},
+  "cards": [
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%201.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "01",
+      "_id": "a76KQvD4J5PX24IJ",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 1,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566178141,
+        "modifiedTime": 1786566241199,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%202.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "02",
+      "_id": "0lBuxw2fxD66GK3I",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 2,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566271880,
+        "modifiedTime": 1786566320808,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%203.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "03",
+      "_id": "CXulwrsclgU6bn7C",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 2,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566328526,
+        "modifiedTime": 1786566370398,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%204.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "04",
+      "_id": "CUR28QXoK9lONjFg",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 4,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566379838,
+        "modifiedTime": 1786566402023,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%205.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "05",
+      "_id": "DvSDK3TyiDG3HGWT",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 5,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566412602,
+        "modifiedTime": 1786566435574,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%206.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "06",
+      "_id": "68aR8Lf0wnf2pv9K",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 6,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566446045,
+        "modifiedTime": 1786566466771,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%207.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "07",
+      "_id": "VbPukBtK8pLu4vJW",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "",
+      "value": 7,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566469832,
+        "modifiedTime": 1786566490108,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%208.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "08",
+      "_id": "BFEw0R1g3gH7xTXr",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 8,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566493184,
+        "modifiedTime": 1786566514878,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%209.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "09",
+      "_id": "srAmEQDOzJ5liwc2",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 9,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566518092,
+        "modifiedTime": 1786566539761,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    },
+    {
+      "faces": [
+        {
+          "name": "",
+          "img": "systems/askhem1713/asset/number%2010.png",
+          "text": ""
+        }
+      ],
+      "face": 0,
+      "name": "10",
+      "_id": "cYr0e5YU6FVEXom7",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "suit": "Initiative",
+      "value": 10,
+      "back": {
+        "text": "",
+        "img": null,
+        "name": ""
+      },
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "askhem1713",
+        "systemVersion": "1.0.0",
+        "createdTime": 1786566544056,
+        "modifiedTime": 1786566567531,
+        "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "width": null,
+      "height": null
+    }
+  ],
+  "rotation": 0,
+  "displayCount": false,
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "askhem1713",
+    "systemVersion": "1.0.0",
+    "createdTime": 1786566107602,
+    "modifiedTime": 1786566270131,
+    "lastModifiedBy": "Gjs7BHmmhNaYvINE",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "askhem-anno-1713",
+      "uuid": "Cards.Hdn8MD1j1AfQ2ojB",
+      "coreVersion": "14.365",
+      "systemId": "askhem1713",
+      "systemVersion": "1.0.0"
+    }
+  },
+  "width": null,
+  "height": null
+}

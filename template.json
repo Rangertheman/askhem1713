@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["player", "npc", "vaesen"],
+    "types": ["player", "npc", "monster"],
     "templates": {
       "attributes": {
         "attribute": {
@@ -76,7 +76,7 @@
       "information": "",
       "note": ""
     },
-   "vaesen": {
+   "monster": {
       "templates": ["attributes", "skills"],
       "fear": { "initial": 0, "subsequent": 0 },
       "ritual": { "known": "", "secret": "" },

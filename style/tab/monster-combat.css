@@ -1,0 +1,127 @@
+.askhem .monster .armors .scrollable {
+    overflow-y: auto;
+    height: fit-content;
+}
+
+.askhem .monster .armors .armor.item:hover {
+    text-shadow: 0 0 10px darkolivegreen;
+}
+
+.askhem .monster .armors .armor.item:nth-child(even) {
+    background-color: #d6c9c2;
+}
+
+.askhem .monster .armors .armor.item:nth-child(odd) {
+    background-color: #ebe4e0;
+}
+
+.askhem .monster .armors .armor .icon {
+    flex-basis: 9%;
+}
+
+.askhem .monster .armors .armor img.icon {
+    border: 0;
+    cursor: pointer;
+}
+
+.askhem .monster .armors .armor .name {
+    flex-basis: 75%;
+}
+
+.askhem .monster .armors .armor .protection {
+    flex-basis: 20%;
+}
+
+.askhem .monster .armors .armor .agility {
+    flex-basis: 20%;
+}
+
+
+
+.askhem .monster .attacks .scrollable {
+    overflow-y: auto;
+    height: fit-content;
+}
+
+.askhem .monster .attacks .attack.item:hover {
+    text-shadow: 0 0 10px darkolivegreen;
+}
+
+.askhem .monster .attacks .attack.item:nth-child(even) {
+    background-color: #d6c9c2;
+}
+
+.askhem .monster .attacks .attack.item:nth-child(odd) {
+    background-color: #ebe4e0;
+}
+
+.askhem .monster .attacks .attack .icon {
+    flex-basis: 9%;
+}
+
+.askhem .monster .attacks .attack img.icon {
+    border: 0;
+    cursor: pointer;
+}
+
+.askhem .monster .attacks .attack .name {
+    flex-basis: 75%;
+}
+
+.askhem .monster .attacks .attack .damage {
+    flex-basis: 10%;
+}
+
+.askhem .monster .attacks .attack .range {
+    flex-basis: 10%;
+}
+
+.askhem .monster .attacks .attack .description {
+    flex-basis: 40%;
+}
+
+
+
+.askhem .monster .magics .scrollable {
+    overflow-y: auto;
+    height: fit-content;
+   
+}
+
+.askhem .monster .magics .magic.item:hover {
+    text-shadow: 0 0 10px darkolivegreen;
+}
+
+.askhem .monster .magics .magic.item:nth-child(even) {
+    background-color: #d6c9c2;
+}
+
+.askhem .monster .magics .magic.item:nth-child(odd) {
+    background-color: #ebe4e0;
+}
+
+.askhem .monster .magics .magic .icon {
+    flex-basis: 10%;
+}
+
+.askhem .monster .magics .magic img.icon {
+    border: 0;
+}
+
+.askhem .monster .magics .magic .name {
+    flex-basis: 75%;
+}
+
+.askhem .monster .magics .magic .category {
+    flex-basis: 20%;
+}
+
+.askhem .monster .magics .magic .description {
+    flex-basis: 46%;
+}
+
+.askhem .monster .magics .magic .button,
+.askhem .monster .attacks .attack .button,
+.askhem .monster .armors .armor .button {
+    flex-basis: 20%;
+}

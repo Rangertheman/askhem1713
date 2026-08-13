@@ -2,14 +2,18 @@ import { adjustBonusText, prepareRollNewDialog, push } from "../util/roll.js";
 import { YearZeroRoll } from "../lib/yzur.js";
 import ChatMessageVaesen, { buildChatCard } from "../util/chat.js";
 
-export class VaesenCharacterSheet extends foundry.appv1.sheets.ActorSheet {
-  dices = new YearZeroRoll();
+export class AskhemMonsterSheet extends foundry.appv1.sheets.ActorSheet {
+  constructor(...args) {
+    super(...args);
+    this.dices = new YearZeroRoll();
+  }
+
   lastTestName = "";
   lastDamage = 0;
 
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["vaesen", "sheet", "actor"],
+      classes: ["monster", "sheet", "actor"],
       width: 750,
       height: "auto",
       resizable: true,
@@ -64,6 +68,13 @@ export class VaesenCharacterSheet extends foundry.appv1.sheets.ActorSheet {
       isNpc: true
     };
 
+    if (context.system.skill) {
+      const sortedSkills = Object.entries(context.system.skill).sort((a, b) => {
+        return game.i18n.localize(a[1].label).localeCompare(game.i18n.localize(b[1].label), 'sv');
+      });
+      context.system.skill = Object.fromEntries(sortedSkills);
+    }
+
     context.informationHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
       context.system.information || "",
       { secrets: this.actor.isOwner, rollData: context.rollData, async: true, relativeTo: this.actor }
@@ -79,6 +90,7 @@ export class VaesenCharacterSheet extends foundry.appv1.sheets.ActorSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+
     if (this.actor.limited) return;
 
     html.find(".item-create").click((ev) => this.onItemCreate(ev));
@@ -250,7 +262,7 @@ export class VaesenCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     const content = `
       <div class="card-holder">
         <img src="${token}" width="45" height="45" class="roll-token" />
-        <div class="vaesen chat-card" data-owner-id="${this.actor.id}">
+        <div class="askhem chat-card" data-owner-id="${this.actor.id}">
           <div class="card-content borderimg">
             <div class="dice-roll flexcol">
               <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">${attackName}</div>

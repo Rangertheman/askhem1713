@@ -1,93 +1,93 @@
-.vaesen .player .attributes .attribute {
+.askhem .player .attributes .attribute {
     padding: 5px;
     flex-basis: 25%;
     border-right: 1px dashed #826657;
     border-left: 1px dashed #826657;
 }
 
-.vaesen .player .attributes .attribute:first-child {
+.askhem .player .attributes .attribute:first-child {
     border-left: 0;
 }
 
-.vaesen .player .attributes .attribute:last-child {
+.askhem .player .attributes .attribute:last-child {
     border-right: 0;
 }
 
-.vaesen .player .attributes .attribute b:hover {
+.askhem .player .attributes .attribute b:hover {
     text-shadow: 0 0 10px darkolivegreen;
     cursor: pointer;
 }
 
-.vaesen .player .attributes .attribute input {
+.askhem .player .attributes .attribute input {
     margin: 5px;
 }
 
-.vaesen .player .skills {
+.askhem .player .skills {
     flex-basis: 50%;
     padding: 5px;
 }
 
-.vaesen .player .skills.physique {
+.askhem .player .skills.physique {
     border-right: 1px dashed #826657;
     border-bottom: 1px dashed #826657;
 }
 
-.vaesen .player .skills.precision {
+.askhem .player .skills.precision {
     border-right: 1px dashed #826657;
     border-top: 1px dashed #826657;
 }
 
-.vaesen .player .skills.logic {
+.askhem .player .skills.logic {
     border-left: 1px dashed #826657;
     border-bottom: 1px dashed #826657;
 }
 
-.vaesen .player .skills.empathy {
+.askhem .player .skills.empathy {
     border-left: 1px dashed #826657;
     border-top: 1px dashed #826657;
 }
 
-.vaesen .player .skills .header {
+.askhem .player .skills .header {
     text-align: center;
 }
 
-.vaesen .player .skills .skill {
+.askhem .player .skills .skill {
     margin: 3px;
     justify-content: space-between;
 }
 
-.vaesen .player .skills .skill b {
+.askhem .player .skills .skill b {
     flex-basis: 50%;
 }
 
-.vaesen .player .skills .skill b:hover {
+.askhem .player .skills .skill b:hover {
     text-shadow: 0 0 10px darkolivegreen;
     cursor: pointer;
 }
 
-.vaesen .player .skills .skill input {
+.askhem .player .skills .skill input {
     text-align: center;
     flex-basis: 25%;
 }
 
-.vaesen .player .conditions {
+.askhem .player .conditions {
     flex-basis: 50%;
 }
 
-.vaesen .player .conditions.physical {
+.askhem .player .conditions.physical {
     border-right: 1px dashed #826657;
 }
 
-.vaesen .player .conditions.mental {
+.askhem .player .conditions.mental {
     border-left: 1px dashed #826657;
 }
 
-.vaesen .player .conditions .header {
+.askhem .player .conditions .header {
     text-align: center;
 }
 
-.vaesen .player .conditions b.condition,
-.vaesen .player .conditions div.condition {
+.askhem .player .conditions b.condition,
+.askhem .player .conditions div.condition {
     flex-basis: 100%;
     border: 1px solid #826657;
     margin-left: 25px;
@@ -95,12 +95,29 @@
     background-color: #d6c9c2;
 }
 
-.vaesen .player .conditions .condition.active {
+.askhem .player .conditions .condition.active {
     border: 1px solid red;
 }
 
-.vaesen .player .conditions b.condition:hover,
-.vaesen .player .conditions div.condition:hover {
+.askhem .player .conditions b.condition:hover,
+.askhem .player .conditions div.condition:hover {
     text-shadow: 0 0 10px darkolivegreen;
     cursor: pointer;
+}
+
+.askhem .player .roll-symptom {
+    font-family: Lin, sans-serif;
+    background-color: #f0ece1;
+    border: 1px solid #846758;
+    border-radius: 4px;
+    color: #412017;
+    padding: 2px 6px; 
+    font-size: 0.95em;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(65, 32, 23, 0.2);
+}
+
+.askhem .player .roll-symptom:hover {
+    background-color: #c4b5a1;
+    box-shadow: inset 0 1px 3px rgba(65, 32, 23, 0.3);
 }

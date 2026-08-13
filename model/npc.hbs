@@ -1,11 +1,11 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} askhem" autocomplete="off">
   <div class="npc flex column full">
     <!-- ÖVERGRIPANDE BLOCK OVANFÖR TABBARNA: PORTRÄTT, NAMN, STYRKA & BESKRIVNING -->
     <div class="header flex column heavy-border" style="margin-bottom: 10px; width: 99%; padding: 10px;">
       <div style="display: flex; gap: 10px; margin-bottom: 0; align-items: center;">
         <!-- Större porträttbild till vänster inramad med borderimg -->
         <div class="card-holder" style="flex-shrink: 0; margin-right: 10px;">
-          <div class="vaesen chat-card" style="margin: 0; width: 145px;">
+          <div class="askhem chat-card" style="margin: 0; width: 145px;">
             <div class="card-content borderimg" style="padding: 8px; display: flex; justify-content: center; align-items: center; box-sizing: border-box;">
               <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="width: 125px !important; height: 125px !important; min-width: 125px !important; min-height: 125px !important; object-fit: cover; border: none; cursor: pointer; flex-shrink: 0; box-sizing: border-box;" />
             </div>
@@ -17,11 +17,11 @@
           <div class="row-fields" style="display: flex; gap: 10px;">
             <div class="name" style="flex: 2;">
               <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">namn:</b>
-              <input name="name" type="text" value="{{actor.name}}" style="text-align: left; width: 100%; padding-left: 5px;" placeholder="Namn" />
+              <input name="name" type="text" value="{{actor.name}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;" placeholder="Namn" />
             </div>
             <div class="strength" style="flex: 1;">
               <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">styrka:</b>
-              <input name="system.attributes.strength.value" type="number" value="{{system.attributes.strength.value}}" style="text-align: left; width: 100%; padding-left: 5px;" />
+              <input name="system.attributes.strength.value" type="number" value="{{system.attributes.strength.value}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;" />
             </div>
           </div>
           

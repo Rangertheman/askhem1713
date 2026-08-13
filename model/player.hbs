@@ -1,4 +1,4 @@
-<form class="{{cssClass}} vaesen" autocomplete="off">
+<form class="{{cssClass}} askhem" autocomplete="off">
     <div class="player flex column">
         
         <!-- HEADER-CONTENT: BIO (VÄNSTER), PORTÄTT + LOGGA (MITTEN), BESKRIVNING (HÖGER) -->
@@ -9,33 +9,33 @@
                 <div class="bio-container" style="display: flex; flex-direction: column; flex: 1.2; gap: 10px;">
                     <div class="name">
                         <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">namn:</b>
-                        <input name="name" type="text" value="{{actor.name}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                        <input name="name" type="text" value="{{actor.name}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;"/>
                     </div>
                     <div class="archetype">
                         <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">arketyp:</b>
-                        <input name="system.bio.archetype" type="text" value="{{system.bio.archetype}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                        <input name="system.bio.archetype" type="text" value="{{system.bio.archetype}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;"/>
                     </div>
                     <div class="social_status">
                         <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">samhällsstånd:</b>
-                        <input name="system.bio.social_status" type="text" value="{{system.bio.social_status}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                        <input name="system.bio.social_status" type="text" value="{{system.bio.social_status}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;"/>
                     </div>
                     
                     <!-- Ålder, Erfarenhet & Miasma på en rad -->
                     <div class="row-fields" style="display: flex; gap: 10px;">
                         <div class="age" style="flex: 1;">
                             <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">ålder:</b>
-                            <input name="system.bio.age" type="text" value="{{system.bio.age}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                            <input name="system.bio.age" type="text" value="{{system.bio.age}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;"/>
                         </div>
                         <div class="experience" style="flex: 1;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
                                 <b style="font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">erfarenhet:</b>
                                 <a class="open-advancement" title="Förbättra karaktär" style="cursor: pointer; margin-right: 2px;"><i class="fas fa-arrow-circle-up"></i></a>
                             </div>
-                            <input name="system.experience" type="number" value="{{system.experience}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                            <input name="system.experience" type="number" value="{{system.experience}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;"/>
                         </div>
                         <div class="miasma" style="flex: 1;">
                             <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">miasma:</b>
-                            <input name="system.miasma" type="number" value="{{system.miasma}}" style="text-align: left; width: 100%; padding-left: 5px;"/>
+                            <input name="system.miasma" type="number" value="{{system.miasma}}" style="text-align: left; width: 100%; padding-left: 5px; background: #ffffff; border: 1px solid #846758; border-radius: 4px; height: 2rem; box-sizing: border-box;"/>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="description-container" style="display: flex; flex-direction: column; flex: 1.2;">
                     <div class="description">
                         <b style="display: block; margin-bottom: 3px; text-align: left; font-family: Berolina, serif; font-size: 1.2em; font-weight: bold;">beskrivning:</b>
-                        <textarea name="system.bio.description" style="height: 250px; width: 100%; resize: none; background: #f9f8f6; border: 1px solid #846758; padding: 10px; text-align: left; font-family: Lin, sans-serif; font-size: 1.2em; color: #412017; line-height: 1.5em;">{{system.bio.description}}</textarea>
+                        <textarea name="system.bio.description" style="height: 250px; width: 100%; resize: none; background: #ffffff; border: 1px solid #846758; border-radius: 4px; padding: 10px; text-align: left; font-family: Lin, sans-serif; font-size: 1.2em; color: #412017; line-height: 1.5em; box-sizing: border-box;">{{system.bio.description}}</textarea>
                     </div>
                 </div>
             </div>

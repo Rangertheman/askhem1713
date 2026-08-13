@@ -1,6 +1,6 @@
-import { vaesenItemSheet } from "./itemSheet.js";
+import { AskhemItemSheet } from "./itemSheet.js";
 
-export class ArchetypeSheet extends vaesenItemSheet {
+export class ArchetypeSheet extends AskhemItemSheet {
   
   get template() {
     return `systems/askhem1713/model/items/archetype.hbs`;
@@ -8,12 +8,10 @@ export class ArchetypeSheet extends vaesenItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
-    // Registrera drop-event explicit på sheet-elementet
     html[0].addEventListener("drop", this._onDrop.bind(this));
   }
 
   async _onDrop(event) {
-    // Använd den nya sökvägen för TextEditor i V14
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
     if (data.type !== "Item") return;
     const item = await Item.implementation.fromDropData(data);

@@ -1,150 +1,150 @@
-.vaesen .player .critical-injuries .scrollable {
+.askhem .player .critical-injuries .scrollable {
     overflow-y: auto;
     height: 164px;
     max-height: 164px;
 }
 
-.vaesen .player .critical-injuries .critical-injury.item:hover {
+.askhem .player .critical-injuries .critical-injury.item:hover {
     text-shadow: 0 0 10px darkolivegreen;
 }
 
-.vaesen .player .critical-injuries .critical-injury.item:nth-child(even) {
+.askhem .player .critical-injuries .critical-injury.item:nth-child(even) {
     background-color: #d6c9c2;
 }
 
-.vaesen .player .critical-injuries .critical-injury.item:nth-child(odd) {
+.askhem .player .critical-injuries .critical-injury.item:nth-child(odd) {
     background-color: #ebe4e0;
 }
 
-.vaesen .player .critical-injuries .critical-injury .icon {
+.askhem .player .critical-injuries .critical-injury .icon {
     flex-basis: 9%;
 }
 
-.vaesen .player .critical-injuries .critical-injury img.icon {
+.askhem .player .critical-injuries .critical-injury img.icon {
     border: 0;
 }
 
-.vaesen .player .critical-injuries .critical-injury .name {
+.askhem .player .critical-injuries .critical-injury .name {
     flex-basis: 20%;
 }
 
-.vaesen .player .critical-injuries .critical-injury .fatal {
+.askhem .player .critical-injuries .critical-injury .fatal {
     flex-basis: 10%;
 }
 
-.vaesen .player .critical-injuries .critical-injury .time-limit {
+.askhem .player .critical-injuries .critical-injury .time-limit {
     flex-basis: 15%;
 }
 
-.vaesen .player .critical-injuries .critical-injury .effect {
+.askhem .player .critical-injuries .critical-injury .effect {
     flex-basis: 36%;
 }
 
-.vaesen .player .critical-injuries .critical-injury .permanent {
+.askhem .player .critical-injuries .critical-injury .permanent {
     flex-basis: 5%;
 }
 
-.vaesen .player .critical-injuries .critical-injury .healed {
+.askhem .player .critical-injuries .critical-injury .healed {
     flex-basis: 5%;
 }
 
-.vaesen .player .critical-injuries .critical-injury .button {
+.askhem .player .critical-injuries .critical-injury .button {
     flex-basis: 15%;
 }
 
-.vaesen .player .weapons .scrollable {
+.askhem .player .weapons .scrollable {
     overflow-y: auto;
     height: 157px;
     max-height: 157px;
 }
 
-.vaesen .player .weapons .weapon.item:hover {
+.askhem .player .weapons .weapon.item:hover {
     text-shadow: 0 0 10px darkolivegreen;
 }
 
-.vaesen .player .weapons .weapon.item:nth-child(even) {
+.askhem .player .weapons .weapon.item:nth-child(even) {
     background-color: #d6c9c2;
 }
 
-.vaesen .player .weapons .weapon.item:nth-child(odd) {
+.askhem .player .weapons .weapon.item:nth-child(odd) {
     background-color: #ebe4e0;
 }
 
-.vaesen .player .weapons .weapon .icon {
+.askhem .player .weapons .weapon .icon {
     flex-basis: 9%;
 }
 
-.vaesen .player .weapons .weapon img.icon {
+.askhem .player .weapons .weapon img.icon {
     border: 0;
 }
 
-.vaesen .player .weapons .weapon .name {
+.askhem .player .weapons .weapon .name {
     flex-basis: 26%;
 }
 
-.vaesen .player .weapons .weapon .damage {
+.askhem .player .weapons .weapon .damage {
     flex-basis: 20%;
 }
 
-.vaesen .player .weapons .weapon .range {
+.askhem .player .weapons .weapon .range {
     flex-basis: 20%;
 }
 
-.vaesen .player .weapons .weapon .bonus {
+.askhem .player .weapons .weapon .bonus {
     flex-basis: 20%;
 }
 
-.vaesen .player .weapons .weapon .starting {
+.askhem .player .weapons .weapon .starting {
     flex-basis: 15%;
 }
 
-.vaesen .player .weapons .weapon .button {
+.askhem .player .weapons .weapon .button {
     flex-basis: 20%;
 }
 
-.vaesen .player .armors .scrollable {
+.askhem .player .armors .scrollable {
     overflow-y: auto;
     height: 50px;
     max-height: 50px;
 }
 
-.vaesen .player .armors .armor.item:hover {
+.askhem .player .armors .armor.item:hover {
     text-shadow: 0 0 10px darkolivegreen;
 }
 
-.vaesen .player .armors .armor.item:nth-child(even) {
+.askhem .player .armors .armor.item:nth-child(even) {
     background-color: #d6c9c2;
 }
 
-.vaesen .player .armors .armor.item:nth-child(odd) {
+.askhem .player .armors .armor.item:nth-child(odd) {
     background-color: #ebe4e0;
 }
 
-.vaesen .player .armors .armor .icon {
+.askhem .player .armors .armor .icon {
     flex-basis: 9%;
 }
 
-.vaesen .player .armors .armor img.icon {
+.askhem .player .armors .armor img.icon {
     border: 0;
 }
 
-.vaesen .player .armors .armor .name {
+.askhem .player .armors .armor .name {
     flex-basis: 46%;
 }
 
-.vaesen .player .armors .armor .protection {
+.askhem .player .armors .armor .protection {
     flex-basis: 20%;
 }
 
-.vaesen .player .armors .armor .agility {
+.askhem .player .armors .armor .agility {
     flex-basis: 20%;
 }
 
-.vaesen .player .armors .armor .button {
+.askhem .player .armors .armor .button {
     flex-basis: 15%;
 }
 
-.vaesen .player a.item-control.fav-togle {
+.askhem .player a.item-control.fav-togle {
     display: inline-block;
     cursor: pointer;
 }

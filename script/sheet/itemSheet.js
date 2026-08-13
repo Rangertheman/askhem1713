@@ -1,6 +1,6 @@
-import ChatMessageVaesen from "../util/chat.js";
+import ChatMessageAskhem from "../util/chat.js";
 
-export class vaesenItemSheet extends foundry.appv1.sheets.ItemSheet {
+export class AskhemItemSheet extends foundry.appv1.sheets.ItemSheet {
   constructor(...args) {
     super(...args);
   }
@@ -9,7 +9,7 @@ export class vaesenItemSheet extends foundry.appv1.sheets.ItemSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 650,
       height: 'auto',
-      classes: ["vaesen", "sheet", "item"],
+      classes: ["askhem", "sheet", "item"],
       resizable: true,
       submitOnChange: true,
     });
@@ -22,7 +22,7 @@ export class vaesenItemSheet extends foundry.appv1.sheets.ItemSheet {
   async getData() {
     const data = super.getData();
     data.system = this.item.system;
-    data.config = CONFIG.vaesen;
+    data.config = CONFIG.askhem;
     
     return data;
   }

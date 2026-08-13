@@ -1,13 +1,13 @@
-.vaesen .npc .note .editor {
+.askhem .npc .note .editor {
     padding: 0;
 }
 
-.vaesen .npc .note .editor-content {
+.askhem .npc .note .editor-content {
     padding: 0 5px;
 }
 
-.vaesen .npc .note .editor,
-.vaesen .npc .note .editor-content {
+.askhem .npc .note .editor,
+.askhem .npc .note .editor-content {
     width: 100%;
     height: 100%;
     

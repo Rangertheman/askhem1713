@@ -43,7 +43,8 @@ export async function linkUnlinkActorData(link, type){
 }
 
 const migrations = {
-  "1.0.0" : migrateTo1_0_0
+  "1.0.0" : migrateTo1_0_0,
+  "1.0.1" : migrateTo1_0_1
 }
 
 async function migrateTo1_0_0() {
@@ -57,8 +58,47 @@ async function migrateTo1_0_0() {
     }
   }
 
-  await game.settings.set("askhem1713", "systemMigrationVersion", game.system.version);
-  ui.notifications.info("Data migrated to version 1.0.0. If you have players' tokens, please, remove them from the scene and drag them to the scene back from the Actor's tab.", options);
+  await game.settings.set("askhem1713", "systemMigrationVersion", "1.0.0");
+  ui.notifications.info("Data migrated to version 1.0.0.", options);
+}
+
+async function migrateTo1_0_1() {
+  const options = {permanent: true};
+  ui.notifications.warn("Migrating your data to version 1.0.1 (Askhem Data Alignment). Please, wait...", options);
+  
+  // Kontrollerar och uppdaterar aktörer och föremål skapade av testspelare
+  for (let actor of game.actors.contents) {
+    let actorUpdates = {};
+    
+    // Säkerställ att aktörstyp och grunddata matchar Askhem
+    if (actor.type === "vaesen") {
+      actorUpdates.type = "monster";
+    }
+
+    if (!foundry.utils.isEmpty(actorUpdates)) {
+      await actor.update(actorUpdates);
+    }
+
+    // Gå igenom inbäddade föremål på aktören
+    for (let item of actor.items.contents) {
+      let itemUpdates = {};
+      // Här kan specifika fältjusteringar för föremål läggas till vid behov
+      if (!foundry.utils.isEmpty(itemUpdates)) {
+        await item.update(itemUpdates);
+      }
+    }
+  }
+
+  // Gå igenom världens enskilda föremål (world items)
+  for (let item of game.items.contents) {
+    let itemUpdates = {};
+    if (!foundry.utils.isEmpty(itemUpdates)) {
+      await item.update(itemUpdates);
+    }
+  }
+
+  await game.settings.set("askhem1713", "systemMigrationVersion", "1.0.1");
+  ui.notifications.info("Data successfully migrated to version 1.0.1.", options);
 }
 
 function migrateTo1_0_Actor(actor){
@@ -68,8 +108,10 @@ function migrateTo1_0_Actor(actor){
     return updateData;
 
   const get = (t, path) => path.split(".").reduce((r, k) => r?.[k], t);
-  for (var conditionKey in CONFIG.vaesen.allConditions) {
-    let condition = CONFIG.vaesen.allConditions[conditionKey];
+  
+  const allConditions = CONFIG.askhem?.allConditions || [];
+  for (var conditionKey in allConditions) {
+    let condition = allConditions[conditionKey];
     if (condition.changes === undefined)
       continue;
 
@@ -84,7 +126,8 @@ function migrateTo1_0_Actor(actor){
 
     updateData[key] = false;
     const statusEffect = CONFIG.statusEffects.find(it => it.id === condition.id);
-    console.log(statusEffect);
+    if (!statusEffect) continue;
+
     actor.createEmbeddedDocuments("ActiveEffect", [{
       label: statusEffect.label,
       icon: statusEffect.icon,

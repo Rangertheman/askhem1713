@@ -1,5 +1,5 @@
 import { YearZeroRoll } from "../lib/yzur.js";
-import ChatMessageVaesen, { buildChatCard } from "../util/chat.js";
+import ChatMessageAskhem, { buildChatCard } from "./chat.js";
 
 export function prepareRollNewDialog(
   sheet,
@@ -22,7 +22,7 @@ export function prepareRollNewDialog(
 
   baseDiceLines.forEach((element) => {
     if (element == null) return;
-    if (element.type === "conditions" && game.settings.get("vaesen", "conditionAlternativeRule"))
+    if (element.type === "conditions" && game.settings.get("askhem1713", "conditionAlternativeRule"))
       return;
 
     let tooltip = element.tooltip ?? "";
@@ -36,7 +36,7 @@ export function prepareRollNewDialog(
       element.value +
       `" readonly data-tooltip="` +
       tooltip +
-      `" data-tooltip-direction="RIGHT" data-tooltip-class="vaesen-tooltip"/></div>`
+      `" data-tooltip-direction="RIGHT" data-tooltip-class="askhem-tooltip"/></div>`
     );
 
     baseDiceDice += parseInt(element.value, 10);
@@ -281,7 +281,7 @@ export async function push(sheet, message = null) {
         let content = `
           <div class="card-holder">
             <img src="${token}" width="45" height="45" class="roll-token" />
-            <div class="vaesen chat-card" data-owner-id="${actor.id}">
+            <div class="askhem chat-card" data-owner-id="${actor.id}">
               <div class="card-content borderimg">
                 <div class="dice-roll flexcol">
                   <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">MISSÖDESTABELL (${totalResult})</div>
@@ -380,7 +380,7 @@ async function rollDice(sheet, numberOfDice, breakdown, item = null, skillKey = 
       if (gmUsers.length > 0) {
         let content = `
           <div class="card-holder">
-            <div class="vaesen chat-card">
+            <div class="askhem chat-card">
               <div class="card-content borderimg" style="padding: 8px;">
                 <p><b>${actor.name}</b> misslyckades med ett Lärdomsslag, men har talangen <b>Lärd</b>.</p>
                 <p>Ligger ämnet inom rollpersonens kunskapsområde?</p>
@@ -407,7 +407,7 @@ async function rollDice(sheet, numberOfDice, breakdown, item = null, skillKey = 
     let content = `
       <div class="card-holder">
         <img src="${token}" width="45" height="45" class="roll-token" />
-        <div class="vaesen chat-card" data-owner-id="${actor.id}">
+        <div class="askhem chat-card" data-owner-id="${actor.id}">
           <div class="card-content borderimg">
             <div class="dice-roll flexcol">
               <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">${item.name}</div>
@@ -425,18 +425,6 @@ async function rollDice(sheet, numberOfDice, breakdown, item = null, skillKey = 
       user: game.user.id
     });
   }
-}
-
-function printDices(sheet) {
-  let message = "";
-  sheet.dices.forEach((dice) => {
-    message =
-      message +
-      "<img width='25px' height='25px' style='border:none;margin-right:2px;margin-top:2px' src='systems/vaesen/asset/dice-" +
-      dice +
-      ".png'/>";
-  });
-  return message;
 }
 
 function buildInputHtmlDialog(diceName, diceValue, type) {
@@ -467,7 +455,7 @@ function buildGearSelectHtmlDialog(options) {
     `: </p></div>`
   );
   html.push(`<div class="flex row" style="width: 100%;">`);
-  html.push(`<select id="gear" style="width: 100%;" data-tooltip-direction="RIGHT" data-tooltip-class="vaesen-tooltip">`);
+  html.push(`<select id="gear" style="width: 100%;" data-tooltip-direction="RIGHT" data-tooltip-class="askhem-tooltip">`);
   html.push(`<option value="0">None (0)</option>`);
   options.forEach((element) => {
     let bonusValue = adjustBonusText(element.bonus);
@@ -501,16 +489,16 @@ function buildSelectMultipleHtmlDialog(options, name, id) {
     `<p style="text-transform: capitalize; white-space:nowrap; margin-top: 4px;">${game.i18n.localize(name)}: </p></div>`
   );
   html.push(`<div class="flex row" style="width: 100%;">`);
-  html.push(`<select id="${id}" style="width: 100%;" multiple data-tooltip-direction="RIGHT" data-tooltip-class="vaesen-tooltip">`);
+  html.push(`<select id="${id}" style="width: 100%;" multiple data-tooltip-direction="RIGHT" data-tooltip-class="askhem-tooltip">`);
   options.forEach((element) => {
     let descriptionWithoutTags = $("<p>").html(element.description).text();
     let requiresBonus =
-      CONFIG.vaesen.bonusTypeRequiresBonus.indexOf(element.bonusType) > -1;
+      CONFIG.askhem.bonusTypeRequiresBonus.indexOf(element.bonusType) > -1;
     let bonusValue = requiresBonus ? parseInt(element.bonus, 10) : null;
     if (bonusValue) bonusValue = `: ${adjustBonusText(bonusValue)}`;
     let bonusInfo =
       (element.bonusType
-        ? game.i18n.localize(CONFIG.vaesen.bonusType[element.bonusType])
+        ? game.i18n.localize(CONFIG.askhem.bonusType[element.bonusType])
         : "") + (bonusValue ?? "");
     const fullDescription = `${element.name}<br>${bonusInfo}<br>${element.description}`;
     html.push(
@@ -521,27 +509,6 @@ function buildSelectMultipleHtmlDialog(options, name, id) {
   return html.join("");
 }
 
-function buildHtmlDialog(diceName, diceValue, type) {
-  if (diceName === "") return ``;
-
-  return (
-    `
-    <div class="flex row" style="flex-basis: 35%; justify-content: space-between;">
-    <p style="text-transform: capitalize; white-space:nowrap;">` +
-    diceName +
-    `: </p>
-    <input id="` +
-    type +
-    `" style="text-align: center" type="text" value="` +
-    diceValue +
-    `" readonly/></div>`
-  );
-}
-
-function buildDivHtmlDialog(divContent) {
-  return "<div class='vaesen roll-dialog '>" + divContent + "</div>";
-}
-
 function buildDivHtmlNewDialog(
   testName,
   baseDiceHtml,
@@ -549,7 +516,7 @@ function buildDivHtmlNewDialog(
   extraLinesHtml
 ) {
   let dialogHtmlContent = [];
-  dialogHtmlContent.push("<div class='vaesen roll-dialog'>");
+  dialogHtmlContent.push("<div class='askhem roll-dialog'>");
   dialogHtmlContent.push(`<div class="roll-fields">`);
   dialogHtmlContent.push(
     `<h2 class="title" style="width: 97%; margin: auto;"> ` +

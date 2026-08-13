@@ -66,3 +66,27 @@
     opacity: 0.5;
     text-decoration: line-through;
 }
+
+.dice-tooltip .dice-rolls .roll img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+/* Stil för pressa-knappen för att matcha systemets övriga knappar utan att störa originaldesignen */
+.chat-card .dice-button.push {
+    background: #f3efe6 !important;
+    border: 1px solid #846758 !important;
+    color: #412017 !important;
+    cursor: pointer;
+    padding: 6px 15px;
+    border-radius: 6px;
+    width: 100%;
+    text-align: center;
+}
+
+.chat-card .dice-button.push:hover {
+    background: #e6dfd5 !important;
+}
