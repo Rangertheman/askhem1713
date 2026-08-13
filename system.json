@@ -3,6 +3,9 @@
     "title": "Askhem Anno 1713",
     "description": "A system for playing Askhem Anno 1713, a Swedish tabletop roleplaying game set in the 18th century.",
     "version": "1.0.1",
+    "url": "https://github.com/Rangertheman/askhem1713",
+    "manifest": "https://raw.githubusercontent.com/Rangertheman/askhem1713/1.0.1/system.json",
+    "download": "https://github.com/Rangertheman/askhem1713/archive/refs/tags/1.0.1.zip",
     "esmodules": [
         "apps/character-wizard.js",
         "script/hooks.js"
@@ -32,10 +35,10 @@
         "style/tab/npc-talent.css",
         "style/tab/npc-gear.css",
         "style/tab/npc-note.css",
-        "style/tab/vaesen-main.css",
-        "style/tab/vaesen-combat.css",
-        "style/tab/vaesen-gear.css",
-        "style/tab/vaesen-note.css",
+        "style/tab/monster-main.css",
+        "style/tab/monster-combat.css",
+        "style/tab/monster-gear.css",
+        "style/tab/monster-note.css",
         "style/dialog/roll.css",
         "style/tab/changelog.css"
     ],
@@ -69,7 +72,13 @@
     },
     "socket": true,
     "license": "LICENSE.txt",
-    "authors": [],
+    "authors": [
+        {
+            "name": "Krister Persson (Rangertheman)",
+            "discord": "Rangertheman",
+            "flags": {}
+        }
+    ],
     "relationships": {
         "modules": [
             {
