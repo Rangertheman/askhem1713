@@ -2,7 +2,7 @@
   <img src="asset/Askhem-logo.jpg" alt="Askhem Logo" width="200"><br>
 </p>
 
-<i><b>Askhem Anno 1713</b></i> is copyright © 2021 Jon Aspehelm / Guldfink Förlag. Used with permission.
+<i><b>Askhem: Anno 1713</b></i> is copyright © 2021 Jon Aspeheim / Guldfink Förlag. Used with permission.
 
 ## About the System
 This game is a tabletop roleplaying system built upon the Year Zero Engine. It is specifically designed to run within the Foundry VTT environment.
@@ -26,5 +26,5 @@ This project is licensed under the terms of the [GNU General Public License v3.0
 
 <p align="center">
   <img src="asset/guldfink-logotyp.jpg" alt="Guldfink Förlag Logo" width="150"><br>
-  © 2021 Jon Aspehelm / Guldfink Förlag
+  © 2021 Jon Aspeheim / Guldfink Förlag
 </p>
