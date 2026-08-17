@@ -12,5 +12,4 @@
 
 # SPECIALLÖSNINGAR
 
-* tba
-
+* Se "Systemmanual" i systemet.

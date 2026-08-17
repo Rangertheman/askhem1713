@@ -28,14 +28,14 @@ export const registerSystemSettings = function () {
         onChange: value => linkUnlinkActorData(value, "NPC")
     });
     
-    game.settings.register("askhem1713", "vaesenLink", {
-        name: "SETTINGS.VAESEN_LINK_NAME",
-        hint: "SETTINGS.VAESEN_LINK",
+    game.settings.register("askhem1713", "monsterLink", {
+        name: "SETTINGS.MONSTER_LINK_NAME",
+        hint: "SETTINGS.MONSTER_LINK",
         scope: "world",
         config: true,
         restricted: true,
         default: false,
         type: Boolean,
-        onChange: value => linkUnlinkActorData(value, "Vaesen")
+        onChange: value => linkUnlinkActorData(value, "Monster")
     });
 }

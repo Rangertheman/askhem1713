@@ -213,17 +213,6 @@ h4 {
   border-radius: 5px;
 }
 
-.vaesen .title {
-  border: 7px solid transparent;
-  padding: 0px;
-  -o-border-image: url(../asset/scooped_corners_dark.svg) stretch;
-     border-image: url(../asset/scooped_corners_dark.svg) stretch;
-  border-image-slice: 58 fill;
-  background-color: transparent;
-  margin: 3px;
-  filter: drop-shadow(2px 2px hsl(13, 47%, 17%));
-}
-
 input.light {
   border: 7px solid transparent;
   -o-border-image: url(../asset/scooped_corners.svg) stretch;
@@ -470,88 +459,151 @@ input.dark {
   gap: 0.25rem;
 }
 
-.journal-sheet form {
-  background: white;
-}
-.journal-sheet form input[name=name] {
-  font-size: 1.5rem;
-  height: 2rem;
-  line-height: 2rem;
-  background: none;
-  color: hsl(13, 47%, 17%);
-  border: none;
-}
-.journal-sheet nav {
-  background: url(../asset/denim075.png) repeat;
-  border-bottom: 1px solid hsl(21, 20%, 60%);
+/* --- Journaljusteringar för Askhem  --- */
+
+.journal-sheet .journal-header {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start !important;
+  background-color: #2a2421 !important;
+  border-bottom: 1px solid #846758 !important;
+  padding: 8px 15px !important;
+  min-height: 40px !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box;
 }
 
-.centered {
-  text-align: center;
-  margin: 0 auto;
+.journal-sheet .journal-header input[name="name"],
+.journal-sheet .journal-header .title,
+.journal-sheet .journal-header h1 {
+  color: #fcfbf9 !important;
+  background: transparent !important;
+  border: none !important;
+  text-align: left !important;
+  font-size: 1.2em !important;
+  line-height: normal !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;  
 }
 
-.journal-header {
-  background-color: hsl(0, 0%, 91%);
-  padding: 3px;
-  border-radius: 5px;
+.journal-sheet .window-content {
+  background-color: #fefefc !important;
+  color: #412017 !important;
+  position: relative;
 }
 
 .journal-entry-page {
-  max-width: 55ch;
+  max-width: 60ch;
   margin: 0 auto;
-  color: #412017;
-}
-.journal-entry-page .window-content {
-  background-color: hsl(21, 20%, 60%);
-}
-.journal-entry-page table tr:nth-child(odd) {
-  background: #e6ded6;
-  border-top: 1px solid #412017;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-}
-.journal-entry-page table tr:nth-child(even) {
-  background: #ffffff;
-  border-top: 1px solid #412017;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-}
-.journal-entry-page table td {
-  border-left: none;
-  border-right: none;
-  font-family: Poppins;
-  font-style: normal;
-  text-align: left;
-  padding: 0.3em;
-}
-.journal-entry-page th {
-  padding: 0.3em;
-  text-align: left;
-  border-top: hidden;
-  word-break: keep-all;
-}
-.journal-entry-page table thead tr {
-  background: #ffffff;
-  border-top: hidden;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  font-family: Poppins;
-  font-weight: 700;
-  font-style: normal;
-  color: #412017;
-  text-shadow: none;
-  font-size: 0.8em;
-  text-transform: uppercase;
+  padding: 0 20px 20px 20px !important;
+  color: #412017 !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-sizing: border-box;
 }
 
-.journal-entry-page ul {
-  list-style: url("../asset/bullet.svg");
-  margin: 2px;
+.journal-sheet .journal-entry-content h1,
+.journal-entry-page h1 {
+  font-family: Berolina, serif !important;
+  color: #412017 !important;
+  background: none !important;
+  border-bottom: none !important;
+  text-align: center !important;
+  font-weight: bold !important;
 }
+
+.journal-sheet .journal-entry-content h2,
+.journal-entry-page h2 {
+  font-family: Berolina, serif !important;
+  color: #412017 !important;
+  background: none !important;
+  border-bottom: none !important;
+  text-align: left !important;
+  font-weight: bold !important;
+}
+
+.journal-sheet .journal-entry-content h1,
+.journal-entry-page h1 {
+  font-size: 2.5em !important;
+  margin-top: 10px !important;
+  margin-bottom: 15px !important;
+}
+
+.journal-sheet .journal-entry-content h2,
+.journal-entry-page h2 {
+  font-size: 2em !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.journal-sheet nav,
+.journal-sheet .sidebar,
+.journal-sheet .directory-list {
+  background-color: #2a2421 !important;
+  color: #fcfbf9 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-sheet .sidebar .sidebar-header,
+.journal-sheet nav .search,
+.journal-sheet .sidebar-header {
+  border-bottom: 1px solid #846758 !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.journal-sheet nav ol.directory-list li.directory-item,
+.journal-sheet nav ol.directory-list li.directory-item a,
+.journal-sheet nav .document-name,
+.journal-sheet .sidebar-body span,
+.journal-sheet .sidebar-body a {
+  color: #e0dcd5 !important;
+}
+
+.journal-sheet nav a:hover,
+.journal-sheet nav ol.directory-list li.directory-item a:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.journal-sheet nav .directory-item.active > a,
+.journal-sheet nav .directory-item.active > .document-name {
+  font-weight: bold;
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.journal-sheet .journal-header label.checkbox {
+  color: #fcfbf9 !important;
+  background-color: #2a2421 !important;
+  border: none !important;
+}
+
+.journal-sheet .journal-header select[name="title.level"] {
+  color: #fcfbf9 !important;
+  background-color: #2a2421 !important;
+  border: 1px solid #846758 !important;
+}
+
+.journal-sheet .journal-header select[name="title.level"] option {
+  color: #412017 !important;
+  background-color: #fefefc !important;
+}
+
+.window-app.journal-sheet .window-header .window-title,
+.journal-sheet .journal-header label.flex0 {
+  color: #fcfbf9 !important;
+  -webkit-text-fill-color: #fcfbf9 !important;
+  text-shadow: none !important;
+}
+
+/* --- Slut på journaljusteringar --- */
 
 .info-box {
   width: 55ch;

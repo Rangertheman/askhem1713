@@ -2,10 +2,10 @@
     "id": "askhem1713",
     "title": "Askhem: Anno 1713",
     "description": "A system for playing Askhem Anno 1713, a Swedish tabletop roleplaying game set in the 18th century.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "url": "https://github.com/Rangertheman/askhem1713",
-    "manifest": "https://raw.githubusercontent.com/Rangertheman/askhem1713/1.0.1/system.json",
-    "download": "https://github.com/Rangertheman/askhem1713/archive/refs/tags/1.0.1.zip",
+    "manifest": "https://raw.githubusercontent.com/Rangertheman/askhem1713/1.0.2/system.json",
+    "download": "https://github.com/Rangertheman/askhem1713/archive/refs/tags/1.0.2.zip",
     "esmodules": [
         "apps/character-wizard.js",
         "script/hooks.js"
@@ -100,6 +100,6 @@
     },
     "compatibility": {
         "minimum": "13",
-        "verified": "14.365"
+        "verified": "14.366"
     }
 }

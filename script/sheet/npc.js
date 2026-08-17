@@ -1,6 +1,6 @@
 import { adjustBonusText, prepareRollNewDialog, push } from "../util/roll.js";
 import { YearZeroRoll } from "../lib/yzur.js";
-import ChatMessageVaesen, { buildChatCard } from "../util/chat.js";
+import ChatMessageAskhem, { buildChatCard } from "../util/chat.js";
 
 export class NpcCharacterSheet extends foundry.appv1.sheets.ActorSheet {
   dices = new YearZeroRoll();
@@ -229,6 +229,6 @@ export class NpcCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     if (!item) return;
 
     const chatCard = await buildChatCard(item.type, item);
-    ChatMessageVaesen.create(chatCard, {});
+    ChatMessageAskhem.create(chatCard, {});
   }
 }

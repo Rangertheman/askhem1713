@@ -28,11 +28,11 @@ export function prepareRollNewDialog(
     let tooltip = element.tooltip ?? "";
     baseLines.push(
       `
-<div class="flex row" style="flex-basis: 35%; justify-content: space-between; width: 100%;">
+<div class="flex row" style="flex-basis: 35%; justify-content: space-between; width: 100%; padding-left: 5px; padding-right: 5px;">
 <p style="text-transform: capitalize; white-space:nowrap;">` +
       element.name +
       `: </p>
-<input style="text-align: center" type="text" value="` +
+<input style="text-align: center; background: #ffffff; border: 1px solid #846758; border-radius: 4px;" type="text" value="` +
       element.value +
       `" readonly data-tooltip="` +
       tooltip +
@@ -93,7 +93,7 @@ export function prepareRollNewDialog(
 
   let d = new Dialog(
     {
-      title: "Test : " + testName,
+      title: testName,
       content: buildDivHtmlNewDialog(
         testName,
         baseLinesHtml,
@@ -349,7 +349,7 @@ async function rollDice(sheet, numberOfDice, breakdown, item = null, skillKey = 
     damage: sheet.lastDamage,
     breakdown: breakdown,
     maxPush: maxPushValue,
-    yzGame: "vae",
+    yzGame: "ask",
   };
 
   let r = YearZeroRoll.forge(
@@ -360,7 +360,7 @@ async function rollDice(sheet, numberOfDice, breakdown, item = null, skillKey = 
       name: sheet.lastTestName,
       damage: sheet.lastDamage,
       maxPush: maxPushValue,
-      yzGame: "vae",
+      yzGame: "ask",
     },
     options
   );
@@ -436,7 +436,7 @@ function buildInputHtmlDialog(diceName, diceValue, type) {
     `: </p>
     <input id="` +
     type +
-    `" style="text-align: center" type="text" value="` +
+    `" style="text-align: center; background: #ffffff; border: 1px solid #846758; border-radius: 4px;" type="text" value="` +
     diceValue +
     `"/></div>`
   );

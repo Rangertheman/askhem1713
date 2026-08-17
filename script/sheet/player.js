@@ -1,6 +1,6 @@
 import { adjustBonusText, prepareRollNewDialog, push } from "../util/roll.js";
 import { YearZeroRoll } from "../lib/yzur.js";
-import ChatMessageVaesen, { buildChatCard } from "../util/chat.js";
+import ChatMessageAskhem, { buildChatCard } from "../util/chat.js";
 
 export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
   dices = new YearZeroRoll();
@@ -107,6 +107,7 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     html.find(".item-delete").click((ev) => this.onItemDelete(ev));
     html.find(".fav-togle").click((ev) => this.onToggleFavorite(ev));
     html.find(".roll-symptom").click((ev) => this._onRollSymptom(ev));
+    html.find(".toggle-mitigation").click((ev) => this._onToggleMitigation(ev));
     
     html.find(".talent-name").click((ev) => this.onUseTalent(ev));
     html.find(".open-advancement").click((ev) => this._onOpenAdvancement(ev));
@@ -364,7 +365,7 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
 
       if (talent.system.bonusType !== "skill") {
           const chatCard = await buildChatCard(talent.type, talent);
-          ChatMessageVaesen.create(chatCard, {});
+          ChatMessageAskhem.create(chatCard, {});
           return;
       }
 
@@ -473,14 +474,16 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     return super._onDropItem(event, data);
   }
 
-  async _onRollSymptom(event) {
+async _onRollSymptom(event) {
     const table = game.tables.getName("Symptom");
     if (!table) return ui.notifications.warn("Ingen tabell med namnet 'Symptom' hittades.");
     
-    const draw = await table.draw();
+    const draw = await table.draw({ displayChat: false });
     if (!draw || !draw.results || draw.results.length === 0) return;
     
-    const resultName = draw.results[0].name;
+    const result = draw.results[0];
+    const resultName = result.name;
+    const resultText = result.text || result.description || "";
     
     const miseryItem = this.actor.items.find(i => i.type === "misery");
     if (!miseryItem) return;
@@ -492,6 +495,63 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
         "system.symptomName": resultName,
         "system.symptom": symptomValue
     });
+
+    let token = this.actor?.img || "systems/askhem1713/asset/info.png";
+
+    let messageContent = `
+      <div class="card-holder">
+        <img src="${token}" width="45" height="45" class="roll-token" />
+        <div class="askhem chat-card">
+          <div class="card-content borderimg">
+            <div class="dice-roll flexcol">
+              <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">${resultName.toUpperCase()}</div>
+              <div class="askhem-roll-divider"></div>
+              <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                ${resultText}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      user: game.user.id,
+      rollMode: game.settings.get("core", "rollMode"),
+      content: messageContent
+    });
+  }
+
+  async _onToggleMitigation(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    if (!item) return;
+
+    const isMitigated = item.getFlag("askhem1713", "isMitigated") || false;
+
+    if (!isMitigated) {
+        await item.setFlag("askhem1713", "originalSymptom", {
+            name: item.system.symptomName,
+            value: item.system.symptom
+        });
+        await item.update({
+            "system.symptomName": "Tillfällig lindring (0)",
+            "system.symptom": 0,
+            "flags.askhem1713.isMitigated": true
+        });
+    } else {
+        const original = item.getFlag("askhem1713", "originalSymptom");
+        if (original) {
+            await item.update({
+                "system.symptomName": original.name,
+                "system.symptom": original.value,
+                "flags.askhem1713.isMitigated": false
+            });
+            await item.unsetFlag("askhem1713", "originalSymptom");
+        }
+    }
+    this.render();
   }
 
   rollAttribute(attributeName) {
@@ -712,7 +772,7 @@ export class PlayerCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     if (!item) return;
 
     const chatCard = await buildChatCard(item.type, item);
-    ChatMessageVaesen.create(chatCard, {});
+    ChatMessageAskhem.create(chatCard, {});
   }
 
   rollFear(key) { }

@@ -10,6 +10,8 @@ This game is a tabletop roleplaying system built upon the Year Zero Engine. It i
 ## Acknowledgements & Heritage
 This system is built upon and adapted from the official [Vaesen Foundry VTT system](https://github.com/fvtt-fria-ligan/vaesen-foundry-vtt) by Fria Ligan AB and contributors, licensed under the GNU General Public License v3.0.
 
+Uses the Year Zero Universal Roller by @Stefouch.
+
 ## Legal Notices
 This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. The Year Zero Engine System Reference Document is used under Fria Ligan AB’s Free Tabletop License.
 

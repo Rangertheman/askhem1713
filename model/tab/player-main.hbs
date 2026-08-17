@@ -106,9 +106,15 @@
                     </div>
                 {{/each}}
             </div>
-           <div style="text-align: center; margin-top: 1px; margin-bottom: 4px;">
-                <button type="button" class="roll-symptom" style="width: 130px; padding: 2px 4px; font-family: Lin, sans-serif; font-size: 0.9em; background-color: #f0ece1;" {{#unless (gt miseryCount 0)}}disabled{{/unless}}>Slå för symptom</button>
-            </div>
+           <div style="display: flex; justify-content: center; gap: 5px; align-items: center; margin-top: 1px; margin-bottom: 4px;">
+    <button type="button" class="roll-symptom" style="width: 130px; padding: 2px 4px; font-family: Lin, sans-serif; font-size: 0.9em; background-color: #f0ece1;" {{#unless (gt miseryCount 0)}}disabled{{/unless}}>Slå för symptom</button>
+    
+    {{#if (gt miseryCount 0)}}
+    <button type="button" class="toggle-mitigation" data-item-id="{{miseryItems.[0]._id}}" style="width: 130px; padding: 2px 4px; font-family: Lin, sans-serif; font-size: 0.9em; background-color: #f0ece1;">
+        {{#if miseryItems.[0].flags.askhem1713.isMitigated}}Återfall{{else}}Plågan lindrad{{/if}}
+    </button>
+    {{/if}}
+</div>
         </div>
     </div>
 

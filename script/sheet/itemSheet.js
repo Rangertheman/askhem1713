@@ -99,7 +99,7 @@ export class AskhemItemSheet extends foundry.appv1.sheets.ItemSheet {
 
   sendToChat(data) {
     let type = data.type;
-    let chatData = ChatMessageVaesen.buildChatCard(type, data);
-    ChatMessageVaesen.create(chatData, {});
+    let chatData = ChatMessageAskhem.buildChatCard(type, data);
+    ChatMessageAskhem.create(chatData, {});
   }
 }

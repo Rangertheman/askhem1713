@@ -254,6 +254,31 @@ export async function buildChatCard(type, data) {
         content: message,
       };
       break;
+
+      case "skill":
+      message =
+        `<div class="card-holder">
+          <img src="` + token + `" width="45" height="45" class="roll-token" />
+          <div class="askhem chat-card">
+            <div class="card-content borderimg">
+              <div class="dice-roll flexcol">
+                <div class="dice-flavor" style="text-transform: uppercase; text-align: left !important;">` + data.name.toUpperCase() + `</div>
+                <div class="askhem-roll-divider"></div>
+                <div class="chat-item-info column" style="text-align: left; font-family: Lin, sans-serif; font-size: 1.1em; line-height: 1.4em;">
+                  <b>` + game.i18n.localize("SKILL.VALUE") + `: </b>` + data.system.value + `</br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      chatData = {
+        speaker: ChatMessage.getSpeaker(),
+        user: game.user.id,
+        rollMode: game.settings.get("core", "rollMode"),
+        content: message,
+      };
+      break;
+      
     case "talent":
       message =
         `<div class="card-holder">

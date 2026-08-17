@@ -87,7 +87,7 @@ export class AskhemActor extends Actor {
     if (this.type != "monster")
       return await super.toggleStatusEffect(statusId, options);
 
-    await conditions.onVaesenCondition(this, statusId);
+    await conditions.onAskhemCondition(this, statusId);
   }
 
   async _preCreate(data, options, user) {
@@ -98,7 +98,7 @@ export class AskhemActor extends Actor {
       data.type == "headquarter" ||
       (data.type == "npc" && (await game.settings.get("askhem1713", "npcLink"))) ||
       (data.type == "monster" &&
-        (await game.settings.get("askhem1713", "vaesenLink")));
+        (await game.settings.get("askhem1713", "monsterLink")));
 
     const displayName = link
       ? CONST.TOKEN_DISPLAY_MODES.HOVER

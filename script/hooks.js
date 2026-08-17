@@ -2,12 +2,6 @@ import { AskhemActor } from "./actor/askhem-actor.js";
 import { PlayerCharacterSheet } from "./sheet/player.js";
 import { NpcCharacterSheet } from "./sheet/npc.js";
 import { AskhemMonsterSheet } from "./sheet/monster.js";
-import {
-  prepareRollNewDialog,
-  push,
-  registerGearSelectTooltip,
-  totalRoll as totalRoll,
-} from "./util/roll.js";
 import { registerSystemSettings } from "./util/settings.js";
 import { askhem } from "./config.js";
 import { conditions } from "./util/conditions.js";
@@ -19,6 +13,19 @@ import ChatMessageAskhem from "./util/chat.js";
 import { registerDefaultFonts } from "./fonts.js";
 import { ArchetypeSheet } from "./sheet/archetypeSheet.js";
 import { AskhemCharacterWizard } from "../apps/character-wizard.js";
+import {
+  prepareRollNewDialog,
+  push,
+  registerGearSelectTooltip,
+  totalRoll as totalRoll,
+} from "./util/roll.js";
+
+Hooks.once('yzeCombatReady', async (yzec) => {
+  await yzec.setInitiativeDeck('GoIrIgk05eNgz8Xq');
+  await yzec.register({
+    finishConfiguration: true
+  });
+});
 
 Hooks.on("renderChatMessageHTML", (app, html, data) => {
   ChatMessageAskhem.activateListeners(html);
@@ -66,8 +73,7 @@ Hooks.once("init", async () => {
   foundry.documents.collections.Actors.registerSheet("askhem", NpcCharacterSheet, {
     types: ["npc"],
     makeDefault: true,
-  });
-  // Uppdaterad registrering till "askhem" för monsterbladet
+  }); 
   foundry.documents.collections.Actors.registerSheet("askhem", AskhemMonsterSheet, {
     types: ["monster"],
     makeDefault: true,
@@ -96,7 +102,7 @@ Hooks.once("init", async () => {
     return options.inverse(this);
   });
 
-  YearZeroRollManager.register("vae", {
+  YearZeroRollManager.register("ask", {
     "ROLL.baseTemplate": "systems/askhem1713/model/templates/dice/broll.hbs",
     "ROLL.chatTemplate": "systems/askhem1713/model/templates/dice/roll.hbs",
     "ROLL.tooltipTemplate": "systems/askhem1713/model/templates/dice/tooltip.hbs",
@@ -105,7 +111,6 @@ Hooks.once("init", async () => {
 });
 
 Hooks.once("ready", async function () {
-  setupCards();
   conditions.onReady();
   Hooks.on("hotbarDrop", (bar, data, slot) => createRollMacro(data, slot));
   Hooks.on("chatMessage", (_, messageText, chatData) =>
@@ -333,19 +338,6 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
     "d6"
   );
 });
-
-async function setupCards() {
-  const initiativeDeckId = game.settings.get("askhem1713", "initiativeDeck");
-  const initiativeDeck = game.cards?.get(initiativeDeckId);
-  if (initiativeDeckId && initiativeDeck) return;
-  ui.notifications.info("UI.NoInitiativeDeckFound", { localize: true });
-  const preset = CONFIG.Cards.presets.initiative;
-  const data = await foundry.utils.fetchJsonWithTimeout(preset.src);
-  const cardsCls = getDocumentClass("Cards");
-  const newDeck = await cardsCls.create(data);
-  await game.settings.set("askhem1713", "initiativeDeck", newDeck?.id);
-  await newDeck?.shuffle({ chatNotification: false });
-}
 
 function preloadHandlebarsTemplates() {
   const templatePaths = [
