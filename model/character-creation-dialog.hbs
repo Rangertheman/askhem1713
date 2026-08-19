@@ -70,6 +70,20 @@
             </div>
             {{/if}}
 
+            <!-- DYNAMISK NAMN-SEKTION -->
+<div style="margin-top: 12px;">
+    <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Namn</h4>
+    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 8px;">
+        <input type="text" name="character-name" value="{{characterData.name}}" placeholder="Skriv in namn eller slumpa nedan" style="width: 100%; padding: 5px; background: #f9f8f6; border: 1px solid #846758; color: #412017;" />
+        <button type="button" data-action="randomize-name-female" title="Slumpa kvinnoform" style="padding: 5px 10px; background: #f9f8f6; border: 1px solid #846758; color: #412017; cursor: pointer;">
+            <i class="fa-solid fa-venus"></i>
+        </button>
+        <button type="button" data-action="randomize-name-male" title="Slumpa mansnamn" style="padding: 5px 10px; background: #f9f8f6; border: 1px solid #846758; color: #412017; cursor: pointer;">
+            <i class="fa-solid fa-mars"></i>
+        </button>
+    </div>
+</div>
+
             <!-- DYNAMISK VAPEN-SEKTION -->
             <div>
                 <h4 class="title" style="text-align: left; font-family: Berolina, serif; font-size: 1.1em; color: #2D1A00; margin: 4px 0;">Vapen</h4>

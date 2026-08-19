@@ -286,6 +286,51 @@ export class AskhemCharacterWizard extends HandlebarsApplicationMixin(Applicatio
       });
     }
 
+    // Spara namn vid ändring
+    const inputName = html.querySelector("[name='character-name']");
+    if (inputName) {
+      inputName.addEventListener("change", (event) => {
+        this.characterData.name = event.target.value;
+      });
+    }
+
+// Slumpa namn (Kvinna/Man)
+    html.querySelectorAll("[data-action='randomize-name-female'], [data-action='randomize-name-male']").forEach(btn => {
+      btn.addEventListener("click", async (event) => {
+        const socialClass = this.characterData.socialClassId;
+        
+        if (!socialClass) {
+          ui.notifications.warn("Du måste välja ett samhällsstånd innan du kan slumpa ett namn.");
+          return;
+        }
+
+        const isFemale = event.currentTarget.dataset.action === "randomize-name-female";
+        const firstNameTable = game.tables.getName(isFemale ? "Förnamn_Kvinna" : "Förnamn_Man");
+        const lastNameTable = game.tables.getName(socialClass === "Adel" ? "Efternamn_Adel" : "Efternamn_Övriga");
+
+        if (!firstNameTable || !lastNameTable) {
+          ui.notifications.error("Hittade inte namn- eller efternamnstabeller.");
+          return;
+        }
+
+        const getResult = async (table) => {
+          const roll = new Roll("1d6*10+1d6");
+          await roll.evaluate();
+          const draw = await table.draw({ roll: roll, displayChat: false });
+          // Använder .name enligt Foundry V14-krav
+          return draw.results[0]?.name || "";
+        };
+
+        const firstName = await getResult(firstNameTable);
+        const lastName = await getResult(lastNameTable);
+        const fullName = `${firstName} ${lastName}`.trim();
+
+        this.characterData.name = fullName;
+        const nameInput = html.querySelector("[name='character-name']");
+        if (nameInput) nameInput.value = fullName;
+      });
+    });
+
     const randomMiseryBtn = html.querySelector("[data-action='randomize-misery']");
     if (randomMiseryBtn && context.miseries && context.miseries.length > 0) {
       randomMiseryBtn.addEventListener("click", () => {
@@ -421,8 +466,9 @@ export class AskhemCharacterWizard extends HandlebarsApplicationMixin(Applicatio
     const finishBtn = html.querySelector("[data-action='finish-wizard']");
     if (finishBtn) {
       finishBtn.addEventListener("click", async () => {
-        const nameInput = html.querySelector("[name='character-name']");
-        const charName = nameInput ? nameInput.value.trim() : "Ny rollperson";
+       const nameInput = html.querySelector("[name='character-name']");
+        this.characterData.name = nameInput ? nameInput.value.trim() : this.characterData.name;
+        const charName = this.characterData.name || "Ny rollperson";
 
         let itemsToCreate = [];
 

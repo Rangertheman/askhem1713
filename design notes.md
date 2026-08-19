@@ -13,3 +13,9 @@
 # SPECIALLÖSNINGAR
 
 * Se "Systemmanual" i systemet.
+
+# UTVECKLING
+
+* Namngenerator - klart
+* Bilder i manualen
+* (Funktion för att visa SLP och monster på ett snyggt sätt i en journal)
