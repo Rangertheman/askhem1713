@@ -1,0 +1,87 @@
+/* --- ASKHEM KORT-REGLER --- */
+.askhem-cs-card {
+    margin: 1rem 0;
+    border: 2px solid #846758;
+    background: #fdfbf7; /* Pappersliknande ton */
+    color: #412017;
+    font-family: "Lin", sans-serif;
+}
+
+.askhem-cs-card-header {
+    background: #412017;
+    color: #e2c8b6;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-family: "Berolina", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.askhem-header-link {
+    color: #e2c8b6 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+/* --- TABELLER --- */
+.askhem-cs-table {
+    width: 100%;
+    border: 2px solid #846758 !important;
+    background: #fdfbf7 !important;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    color: #412017 !important;
+}
+
+.askhem-cs-table th {
+    background: #412017 !important;
+    color: #e2c8b6 !important;
+    padding: 10px 12px !important;
+    font-family: "Berolina", serif;
+}
+
+.askhem-cs-roll-table-btn {
+    background: #e2c8b6 !important;
+    color: #412017 !important;
+    border: 1px solid #846758 !important;
+    padding: 2px 10px !important;
+    cursor: pointer !important;
+    font-family: "Berolina", serif;
+    font-weight: bold !important;
+}
+
+/* --- NPC/MONSTER/PC STATS-BLOCK --- */
+.askhem-cs-stats-container {
+    background: #ede6de !important;
+    padding: 10px !important;
+    border-bottom: 2px solid #846758 !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    text-align: center !important;
+}
+
+.askhem-cs-stat-box b {
+    display: block;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    color: #846758;
+}
+
+button.askhem-table-roll-btn {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #e2c8b6 !important;
+    font-family: 'Berolina', serif !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+}
+button.askhem-table-roll-btn:hover {
+    color: #ffffff !important;
+    background: none !important;
+    box-shadow: none !important;
+}

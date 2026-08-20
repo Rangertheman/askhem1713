@@ -17,5 +17,11 @@
 # UTVECKLING
 
 * Namngenerator - klart
-* Bilder i manualen
-* (Funktion för att visa SLP och monster på ett snyggt sätt i en journal)
+* Bilder i manualen - klart
+* Bakgrundstabeller - klart
+* Äventyrskompendiet öppnad automatiskt när det kommit en ny version - klart
+* Funktion för att visa SLP och monster på ett snyggt sätt i en journal - klart
+* Test med mer Berolina-typsnitt på rollformuläret
+* Skapa PDF från Foundry
+* Fraktioner?
+* Lindringar?
