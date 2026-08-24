@@ -5,6 +5,7 @@
     background: #fdfbf7; /* Pappersliknande ton */
     color: #412017;
     font-family: "Lin", sans-serif;
+    font-size: 1.15em !important; /* Ökad textstorlek för hela kortet */
 }
 
 .askhem-cs-card-header {
@@ -17,6 +18,7 @@
     font-family: "Berolina", serif;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-size: 1em; /* Säkerställer att rubriken behåller rätt proportioner i förhållande till kortets basstorlek */
 }
 
 .askhem-header-link {
@@ -69,6 +71,14 @@
     color: #846758;
 }
 
+/* --- FÄRDIGHETER OCH INNEHÅLL INUTI KORT --- */
+.askhem-cs-card .chat-item-info,
+.askhem-cs-card div,
+.askhem-cs-card span,
+.askhem-cs-card p {
+    font-size: inherit; /* Ärver den uppökta storleken från .askhem-cs-card */
+}
+
 button.askhem-table-roll-btn {
     background: none !important;
     border: none !important;
@@ -84,4 +94,31 @@ button.askhem-table-roll-btn:hover {
     color: #ffffff !important;
     background: none !important;
     box-shadow: none !important;
+}
+
+/* --- ASKHEM UTRUSTNINGSTABELL --- */
+.askhem-cs-gear-table {
+    width: 100% !important;
+    border: 2px solid #846758 !important;
+    background: #fdfbf7 !important;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    color: #412017 !important;
+    font-family: "Lin", sans-serif;
+}
+
+.askhem-cs-gear-table th.askhem-gear-th {
+    background: #ede6de !important;
+    color: #412017 !important;
+    padding: 8px 12px !important;
+    font-family: "Berolina", serif;
+    font-size: 1.15em !important;
+    border-bottom: 2px solid #846758 !important;
+    border-top: 1px solid #846758 !important;
+}
+
+.askhem-cs-gear-table td {
+    padding: 8px 12px !important;
+    font-size: 1.15em !important;
+    color: #412017 !important;
 }
