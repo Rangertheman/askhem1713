@@ -23,7 +23,7 @@
 * Funktion för att visa SLP och monster på ett snyggt sätt i en journal - klart
 * Funktion för att visa föremål på ett snyggt sätt i en journal - klart
 * Snygga utrustningslistor i en journal - klart
-* Test med mer Berolina-typsnitt på rollformuläret - påbörjat
+* Test med mer Berolina-typsnitt på rollformuläret - testat, återgått till det ursprungliga utseendet
 * Skapa PDF från Foundry
 * Fraktioner?
 * Lindringar?
