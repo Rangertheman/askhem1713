@@ -49,7 +49,7 @@ Hooks.once("init", async () => {
   };
   CONFIG.hasYZECombatActive = game.modules.get("yze-combat")?.active;
 
-  CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
+CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
     {
       pattern: /@RAW\[(.+?)\]/gm,
       enricher: async (match, options) => {
@@ -60,6 +60,22 @@ Hooks.once("init", async () => {
         const doc = document.createElement("span");
         doc.innerHTML = myData;
         return doc;
+      },
+    },
+ {
+      pattern: /\[\[\/atk\s+([^\]]+)\]\]/gi,
+      enricher: async (match) => {
+        const parsed = parseAskhemAtkCommand(match[0]);
+        if (!parsed) return null;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.classList.add("askhem-atk-dialog-btn");
+        btn.dataset.dice = String(parsed.diceCount);
+        btn.dataset.damage = String(parsed.damage);
+        const damageText = parsed.damage >= 0 ? `+${parsed.damage}` : `${parsed.damage}`;
+        btn.textContent = `Anfall: ${parsed.diceCount}T, vapenskada ${damageText}`;
+        return btn;
       },
     },
   ]);
@@ -223,7 +239,7 @@ Hooks.once("ready", async function () {
     });
   }
 
-  let allMonsters = game.actors.filter((it) => it.type == "monster");
+let allMonsters = game.actors.filter((it) => it.type == "monster");
 
   allMonsters.forEach((monster) => {
     let conditions = monster.items.filter((c) => c.type == "condition");
@@ -233,6 +249,40 @@ Hooks.once("ready", async function () {
       const img = "systems/askhem1713/asset/counter_tokens/" + count + ".png";
       condition.update({ img: img });
     });
+  });
+
+  document.addEventListener("click", async (event) => {
+    const btn = event.target.closest?.(".askhem-atk-dialog-btn");
+    if (!btn) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const actor = resolveMonsterActorFromButton(btn);
+    if (!actor) {
+      ui.notifications.warn("Hittade inget monster kopplat till detta anfallsslag.");
+      return;
+    }
+
+    const diceCount = parseInt(btn.dataset.dice, 10) || 0;
+    const damage = parseInt(btn.dataset.damage, 10) || 0;
+
+    const { YearZeroRoll } = await import("./lib/yzur.js");
+
+    const sheetContext = actor.sheet ?? {
+      object: { _id: actor.id },
+      dices: new YearZeroRoll(),
+      lastTestName: "",
+      lastDamage: 0,
+    };
+
+    const label = game.i18n.localize("ROLL.ATTACK") || "Anfall";
+    prepareRollNewDialog(
+      sheetContext,
+      `${actor.name} – ${label}`,
+      [{ name: label, value: diceCount }],
+      damage
+    );
   });
 });
 
@@ -444,3 +494,38 @@ Hooks.on("renderActorDirectory", (app, html) => {
 
   footer.appendChild(button);
 });
+function parseAskhemAtkCommand(raw = "") {
+  const match = String(raw).match(/\/atk\s+(\d+)d\d*(?:\s*,\s*([+-]?\d+))?/i);
+  if (!match) return null;
+
+  return {
+    diceCount: parseInt(match[1], 10) || 0,
+    damage: match[2] ? parseInt(match[2], 10) : 0,
+  };
+}
+
+function resolveMonsterActorFromButton(button) {
+  const appEl = button.closest("[data-appid]");
+  if (appEl) {
+    const app = ui.windows?.[appEl.dataset.appid];
+    const tableDoc = app?.document;
+    if (tableDoc?.documentName === "RollTable") {
+      const linkedMonster = game.actors.find(
+        (a) => a.type === "monster" && a.system?.attackTable === tableDoc.uuid
+      );
+      if (linkedMonster) return linkedMonster;
+    }
+  }
+
+  const activeMonsterSheet = Object.values(ui.windows || {}).find(
+    (w) => w.actor?.type === "monster" && w.rendered
+  );
+  if (activeMonsterSheet?.actor) return activeMonsterSheet.actor;
+
+  const controlledMonster = canvas?.tokens?.controlled?.find(
+    (t) => t.actor?.type === "monster"
+  )?.actor;
+  if (controlledMonster) return controlledMonster;
+
+  return null;
+}

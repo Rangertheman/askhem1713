@@ -148,6 +148,7 @@
   "ROLL.MREC": "Mental Recovery",
   "ROLL.BONUS": "Extra Bonus Dice",
   "ROLL.DAMAGE": "Damage",
+  "ROLL.ATTACK": "Attack",
   "YZUR.CHAT.ROLL.Push": "Push",
   "YZUR.DIETYPES.SkillDie": "Success Count"
 }
